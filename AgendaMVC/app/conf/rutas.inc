@@ -24,4 +24,6 @@ $mapeoRutas =
     array('controller' => 'AgendaController', 'action' => 'agregarAmigo'),
     'buscar' =>
     array('controller' => 'AgendaController', 'action' => 'buscarAmigo'),
+    'login' =>
+    array('controller' => 'LoginController', 'action' => 'iniciarSesion'),
   );

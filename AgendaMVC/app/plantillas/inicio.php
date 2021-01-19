@@ -17,7 +17,9 @@
 <h1>Hola</h1>
 <h2><?= $datos['mensaje'] ?></h2>
 <p>Hoy es: <?= $datos['dia'] ?><br>
-  Son las: <?= $datos['hora'] ?></p>
+    Son las: <?= $datos['hora'] ?></p>
+
+
 
 <?php $contenido = ob_get_clean() ?>
 

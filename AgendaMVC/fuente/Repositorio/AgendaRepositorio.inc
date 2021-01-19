@@ -100,6 +100,7 @@ class AgendaRepositorio
             throw $ex;
             return false;
         } finally {
+            $stm = null;
             $con = null;
         }
     }
