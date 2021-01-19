@@ -1,0 +1,67 @@
+body {
+    margin: 0;
+}
+
+header {
+    padding: 50px;
+    background-color: red;
+    color: whitesmoke;
+    margin-bottom: 20px;
+}
+
+.error {
+    color: red;
+    font-size: small;
+}
+
+li {
+    list-style: none;
+    width: 100%;
+}
+
+.derecha {
+    float: right;
+}
+
+h1,
+h2,
+h4 {
+    text-align: center;
+}
+
+.wrapper {
+    width: 900px;
+    margin: auto;
+}
+
+button {
+    margin: 10px;
+    background: red;
+    color: whitesmoke;
+    border-radius: 15px;
+    border: 0;
+    font-size: large;
+    font-weight: bold;
+    padding: 1em;
+}
+
+textarea {
+    border: 1px solid red;
+    border-radius: 15px;
+    padding: 1em;
+}
+
+#cancelar {
+    background-color: silver;
+    padding: 0.5em;
+    font-size: medium;
+    font-weight: normal;
+}
+
+h1 {
+    margin: 0;
+}
+
+legend {
+    font-weight: bold;
+}

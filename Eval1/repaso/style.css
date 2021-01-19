@@ -1,0 +1,23 @@
+* {
+    display: block;
+    box-sizing: border-box;
+}
+
+input,
+select {
+    display: inline-block;
+    font-size: large;
+    background-color: lightgrey;
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+label {
+    font-size: large;
+}
+
+.error {
+    font-size: small;
+    color: red;
+}
