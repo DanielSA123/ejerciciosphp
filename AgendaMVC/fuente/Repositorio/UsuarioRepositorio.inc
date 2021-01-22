@@ -15,19 +15,21 @@ class UsuarioRepositorio
             $lectura =  $stm->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $ex) {
             throw $ex;
-            return false;
         } catch (Exception $ex) {
             throw $ex;
-            return false;
         } finally {
             $stm = null;
             $con = null;
         }
-
-        if (password_verify($pass, $lectura)) {
-            $_SESSION['login'] = true;
+        if (!empty($lectura)) {
+            if (password_verify($pass, $lectura[0]['pass'])) {
+                $_SESSION['login'] = true;
+                return "";
+            } else {
+                return $error = "El usuario o contraseña es incorrecto";
+            }
         } else {
-            /* error */
+            return $error = "El usuario o contraseña es incorrecto";
         }
     }
 }

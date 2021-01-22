@@ -1,7 +1,11 @@
 <?php ob_start() ?>
 
 <h1>Inicio de sesion</h1>
-
+<?php if (isset($error)) {
+    echo $error;
+} else {
+    echo "";
+} ?>
 <form action="" method="post">
     <fieldset>
         <legend>Login</legend>
