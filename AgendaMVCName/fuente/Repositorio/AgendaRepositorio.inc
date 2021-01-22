@@ -1,5 +1,6 @@
 <?php
 
+namespace miId\App\fuente\Repositorio;
 
 class AgendaRepositorio
 {
@@ -17,10 +18,10 @@ class AgendaRepositorio
             $con = (new ConexionBd())->getConexion();
             $stm = $con->prepare($sql);
             $stm->execute();
-            return $stm->fetchAll(PDO::FETCH_ASSOC);
-        } catch (PDOException $ex) {
+            return $stm->fetchAll(\PDO::FETCH_ASSOC);
+        } catch (\PDOException $ex) {
             throw $ex;
-        } catch (Exception $ex) {
+        } catch (\Exception $ex) {
             throw $ex;
         } finally {
             $stm = null;
@@ -45,10 +46,10 @@ class AgendaRepositorio
             $stm->bindValue(":telefono", $amigo->getTlfno());
             $stm->bindValue(":provincia", $amigo->getCiudad());
             return $stm->execute();
-        } catch (PDOException $ex) {
+        } catch (\PDOException $ex) {
             throw $ex;
             return false;
-        } catch (Exception $ex) {
+        } catch (\Exception $ex) {
             throw $ex;
             return false;
         } finally {
@@ -68,10 +69,10 @@ class AgendaRepositorio
         try {
             $con = (new ConexionBd())->getConexion();
             return (bool) $con->exec($sql);
-        } catch (PDOException $ex) {
+        } catch (\PDOException $ex) {
             throw $ex;
             return false;
-        } catch (Exception $ex) {
+        } catch (\Exception $ex) {
             throw $ex;
             return false;
         } finally {
@@ -94,11 +95,11 @@ class AgendaRepositorio
             $stm->bindValue(":busca", $busqueda);
             $stm->bindValue(":buscaN", $busqueda);
             $stm->execute();
-            return $stm->fetchAll(PDO::FETCH_ASSOC);
-        } catch (PDOException $ex) {
+            return $stm->fetchAll(\PDO::FETCH_ASSOC);
+        } catch (\PDOException $ex) {
             throw $ex;
             return false;
-        } catch (Exception $ex) {
+        } catch (\Exception $ex) {
             throw $ex;
             return false;
         } finally {

@@ -1,4 +1,7 @@
 <?php
+
+namespace miId\App\fuente\Modelo;
+
 class Amigo
 {
   private string  $ciudad;

@@ -1,5 +1,6 @@
 <?php
 
+namespace miId\App\fuente\Repositorio;
 
 class UsuarioRepositorio
 {
@@ -14,10 +15,10 @@ class UsuarioRepositorio
             $stm = $con->prepare($sql);
             $stm->bindValue(":usu", $usu);
             $stm->execute();
-            $lectura =  $stm->fetchAll(PDO::FETCH_ASSOC);
-        } catch (PDOException $ex) {
+            $lectura =  $stm->fetchAll(\PDO::FETCH_ASSOC);
+        } catch (\PDOException $ex) {
             throw $ex;
-        } catch (Exception $ex) {
+        } catch (\Exception $ex) {
             throw $ex;
         } finally {
             $stm = null;

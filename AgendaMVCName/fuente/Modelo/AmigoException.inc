@@ -1,5 +1,8 @@
 <?php
-class AmigoException extends Exception
+
+namespace miId\App\fuente\Modelo;
+
+class AmigoException extends \Exception
 {
   private array $errores;
 

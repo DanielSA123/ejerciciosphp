@@ -1,5 +1,6 @@
 <?php
 
+namespace miId\App\fuente\Repositorio;
 
 class ProvinciaRepositorio
 {
@@ -12,10 +13,10 @@ class ProvinciaRepositorio
         try {
             $con = (new ConexionBd())->getConexion();
             $stm = $con->query($sql);
-            return $stm->fetchAll(PDO::FETCH_ASSOC);
-        } catch (PDOException $ex) {
+            return $stm->fetchAll(\PDO::FETCH_ASSOC);
+        } catch (\PDOException $ex) {
             throw $ex;
-        } catch (Exception $ex) {
+        } catch (\Exception $ex) {
             throw $ex;
         } finally {
             unset($stm);

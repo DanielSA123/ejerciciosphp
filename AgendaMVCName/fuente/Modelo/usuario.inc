@@ -1,4 +1,7 @@
 <?php
+
+namespace miId\App\fuente\Modelo;
+
 class Usuario
 {
     private string $usu;
