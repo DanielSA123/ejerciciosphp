@@ -23,6 +23,7 @@ if (isset($_GET['ctl'])) {
 } else {
   $ruta = 'inicio';
 }
+var_dump($mapeoRutas);
 
 $controlador = $mapeoRutas[$ruta];
 // Ejecución del controlador asociado a la ruta
