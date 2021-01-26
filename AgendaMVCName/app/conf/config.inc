@@ -1,5 +1,6 @@
 <?php
 /* configuraciones comunes a la aplicación */
+
 class configuracion
 {
   private $dbParams = []; /*Vector con parámetros de configuración del SGBD */

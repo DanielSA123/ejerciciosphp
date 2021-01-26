@@ -1,4 +1,9 @@
 <?php
+
+namespace miId\App\fuente\Controlador;
+
+use miId\App\fuente\Repositorio\UsuarioRepositorio;
+
 class LoginController
 {
     public function iniciarSesion()
@@ -21,5 +26,9 @@ class LoginController
             unset($_SESSION['login']);
             header('Location: index.php');
         }
+    }
+
+    public function registrarUsuario()
+    {
     }
 }

@@ -2,6 +2,8 @@
 
 namespace miId\App\fuente\Repositorio;
 
+use miId\App\fuente\Nucleo\ConexionBd;
+
 class UsuarioRepositorio
 {
     public function findPass(string $usu, string $pass)
@@ -9,7 +11,7 @@ class UsuarioRepositorio
         $sql = "SELECT pass 
         FROM usuario
          WHERE usuario = :usu";
-        require_once __DIR__ . '/../../core/conexionBd.inc';
+        require_once __DIR__ . '/../nucleo/conexionBd.inc';
         try {
             $con = (new ConexionBd())->getConexion();
             $stm = $con->prepare($sql);

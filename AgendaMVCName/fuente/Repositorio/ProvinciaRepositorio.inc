@@ -2,6 +2,8 @@
 
 namespace miId\App\fuente\Repositorio;
 
+use miId\App\fuente\Nucleo;
+
 class ProvinciaRepositorio
 {
     public function findAllProvincias(): array
@@ -9,9 +11,9 @@ class ProvinciaRepositorio
         $sql = "SELECT nombre
         FROM provincia";
 
-        require_once __DIR__ . '/../../core/conexionBd.inc';
+        require_once __DIR__ . '/../nucleo/conexionBd.inc';
         try {
-            $con = (new ConexionBd())->getConexion();
+            $con = (new Nucleo\ConexionBd())->getConexion();
             $stm = $con->query($sql);
             return $stm->fetchAll(\PDO::FETCH_ASSOC);
         } catch (\PDOException $ex) {

@@ -2,7 +2,9 @@
 
 namespace miId\App\fuente\Nucleo;
 
-require_once __DIR__ . '/../app/conf/config.inc';
+use miId\app\Conf\configuracion;
+
+require_once __DIR__ . '/../../app/conf/config.inc';
 
 class ConexionBd
 {
@@ -10,7 +12,7 @@ class ConexionBd
 
   public function __construct()
   {
-    $params = (new Configuracion())->getDbParams();
+    $params = (new \Configuracion())->getDbParams();
 
     try {
       $this->con = new \PDO(

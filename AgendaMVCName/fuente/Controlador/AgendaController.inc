@@ -1,16 +1,23 @@
 <?php
+
+namespace miId\App\fuente\Controlador;
+
+use miId\App\fuente\Repositorio;
+use miId\App\fuente\Modelo\Amigo;
+use miId\App\fuente\Modelo\AmigoException as AE;
+
 class AgendaController
 {
     public function verTodaAgenda()
     {
         require_once __DIR__ . '/../Repositorio/AgendaRepositorio.inc';
-        $datos = (new AgendaRepositorio())->findAllAmigos();
+        $datos = (new Repositorio\AgendaRepositorio())->findAllAmigos();
         require __DIR__ . '/../../app/plantillas/mostrarTodos.php';
     }
     public function quitarAmigos()
     {
         require_once __DIR__ . '/../Repositorio/AgendaRepositorio.inc';
-        $repoAgenda = new AgendaRepositorio();
+        $repoAgenda = new Repositorio\AgendaRepositorio();
         if (!isset($_POST['ok'])) {
             $datos = $repoAgenda->findAllAmigos(true);
             require __DIR__ . '/../../app/plantillas/quitarAmigos.php';
@@ -35,22 +42,22 @@ class AgendaController
                 $amigo = new Amigo($datos);
                 require_once __DIR__ . '/../Repositorio/AgendaRepositorio.inc';
                 try {
-                    if (!(new AgendaRepositorio)->addAmigo($amigo)) {
+                    if (!(new Repositorio\AgendaRepositorio)->addAmigo($amigo)) {
                         /* no se puede insertar */
                     }
                     unset($datos);
                     unset($amigo);
-                } catch (PDOException $ex) {
+                } catch (\PDOException $ex) {
                     //tratar excepcion
-                } catch (Exception $ex) {
+                } catch (\Exception $ex) {
                     //tratar excepcion
                 }
-            } catch (AmigoException $ex) {
+            } catch (AE $ex) {
                 $errores = $ex->getErrores();
             }
         }
         require_once __DIR__ . '/../Repositorio/ProvinciaRepositorio.inc';
-        $provincias = (new ProvinciaRepositorio)->findAllProvincias();
+        $provincias = (new Repositorio\ProvinciaRepositorio)->findAllProvincias();
         require __DIR__ . '/../../app/plantillas/agregarAmigo.php';
     }
 
@@ -60,12 +67,12 @@ class AgendaController
             $nombre = $_POST['nombreBuscar'];
             require_once __DIR__ . '/../Repositorio/AgendaRepositorio.inc';
             try {
-                $datos = (new AgendaRepositorio)->findAllByNombreOrProvincia($nombre);
+                $datos = (new Repositorio\AgendaRepositorio)->findAllByNombreOrProvincia($nombre);
                 require __DIR__ . '/../../app/plantillas/busquedaAmigos.php';
-            } catch (PDOException $ex) {
+            } catch (\PDOException $ex) {
                 var_dump($ex);
                 //tratar excepcion
-            } catch (Exception $ex) {
+            } catch (\Exception $ex) {
                 echo "error2";
                 //tratar excepcion
             }

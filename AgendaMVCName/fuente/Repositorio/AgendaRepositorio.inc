@@ -2,6 +2,9 @@
 
 namespace miId\App\fuente\Repositorio;
 
+use miId\App\fuente\Nucleo\ConexionBd as CBD;
+use miId\App\fuente\Modelo\Amigo;
+
 class AgendaRepositorio
 {
     public function findAllAmigos($conId = false): array
@@ -13,9 +16,9 @@ class AgendaRepositorio
             $sql = 'SELECT a.Nombre,Edad,Telefono,p.nombre as Provincia 
                 FROM agenda a INNER JOIN provincia p on  a.codProvincia = p.codProvincia';
         }
-        require_once __DIR__ . '/../../core/conexionBd.inc';
+        require_once __DIR__ . '/../nucleo/conexionBd.inc';
         try {
-            $con = (new ConexionBd())->getConexion();
+            $con = (new CBD())->getConexion();
             $stm = $con->prepare($sql);
             $stm->execute();
             return $stm->fetchAll(\PDO::FETCH_ASSOC);
@@ -37,9 +40,9 @@ class AgendaRepositorio
          SELECT :nombre,:edad,:telefono,codProvincia
          FROM provincia
          WHERE nombre = :provincia';
-        require_once __DIR__ . '/../../core/conexionBd.inc';
+        require_once __DIR__ . '/../nucleo/conexionBd.inc';
         try {
-            $con = (new ConexionBd())->getConexion();
+            $con = (new CBD())->getConexion();
             $stm = $con->prepare($sql);
             $stm->bindValue(":nombre", $amigo->getNombre());
             $stm->bindValue(":edad", $amigo->getEdad());
@@ -65,9 +68,9 @@ class AgendaRepositorio
         $sql = "DELETE agenda
         WHERE idAgenda = $id";
 
-        require_once __DIR__ . '/../../core/conexionBd.inc';
+        require_once __DIR__ . '/../nucleo/conexionBd.inc';
         try {
-            $con = (new ConexionBd())->getConexion();
+            $con = (new CBD())->getConexion();
             return (bool) $con->exec($sql);
         } catch (\PDOException $ex) {
             throw $ex;
@@ -87,10 +90,10 @@ class AgendaRepositorio
                 WHERE p.nombre LIKE :busca 
                 OR a.Nombre LIKE :buscaN";
 
-        require_once __DIR__ . '/../../core/conexionBd.inc';
+        require_once __DIR__ . '/../nucleo/conexionBd.inc';
         try {
             $busqueda = '%' . $busqueda . '%';
-            $con = (new ConexionBd())->getConexion();
+            $con = (new CBD())->getConexion();
             $stm = $con->prepare($sql);
             $stm->bindValue(":busca", $busqueda);
             $stm->bindValue(":buscaN", $busqueda);

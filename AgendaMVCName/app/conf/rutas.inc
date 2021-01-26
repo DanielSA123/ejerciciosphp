@@ -15,17 +15,20 @@
 $mapeoRutas =
   array(
     'inicio' =>
-    array('controller' => 'defaultController', 'action' => 'inicio'),
+    array('controller' => 'miId\App\fuente\Controlador\defaultController', 'action' => 'inicio'),
     'ver' =>
-    array('controller' => 'AgendaController', 'action' => 'verTodaAgenda'),
+    array('controller' => 'miId\App\fuente\Controlador\AgendaController', 'action' => 'verTodaAgenda'),
     'quitar' =>
-    array('controller' => 'AgendaController', 'action' => 'quitarAmigos'),
+    array('controller' => 'miId\App\fuente\Controlador\AgendaController', 'action' => 'quitarAmigos'),
     'agregar' =>
-    array('controller' => 'AgendaController', 'action' => 'agregarAmigo'),
+    array('controller' => 'miId\App\fuente\Controlador\AgendaController', 'action' => 'agregarAmigo'),
     'buscar' =>
-    array('controller' => 'AgendaController', 'action' => 'buscarAmigo'),
+    array('controller' => 'miId\App\fuente\Controlador\AgendaController', 'action' => 'buscarAmigo'),
     'login' =>
-    array('controller' => 'LoginController', 'action' => 'iniciarSesion'),
+    array('controller' => 'miId\App\fuente\Controlador\LoginController', 'action' => 'iniciarSesion'),
     'logout' =>
-    array('controller' => 'LoginController', 'action' => 'cerrarSesion'),
+    array('controller' => 'miId\App\fuente\Controlador\LoginController', 'action' => 'cerrarSesion'),
+    'signin' =>
+    array('controller' => 'miId\App\fuente\Controlador\LoginController', 'action' => 'registrarUsuario'),
+
   );
