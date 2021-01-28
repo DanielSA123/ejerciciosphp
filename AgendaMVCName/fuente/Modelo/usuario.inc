@@ -12,17 +12,17 @@ class Usuario
 
     public function __construct($usu, $pass, $passre)
     {
+        $this->errores = [];
         if (!empty($error = $this->setPass($pass, $passre))) {
             $this->errores['pass'] = $error;
+        } else {
+            $this->pass = $pass;
         }
         if (!empty($error = $this->setUsu($usu))) {
             $this->errores['usu'] = $error;
+        } else {
+            $this->usu = $usu;
         }
-        if ($this->errores) {
-            throw new Exception("hay errores");
-        }
-        $this->usu = $usu;
-        $this->pass = $pass;
     }
 
     public function setPass(string $pass, string $passre)
@@ -30,7 +30,7 @@ class Usuario
         if ($pass == "") {
             return "La contraseña no puede estar vacia";
         }
-        $expReg = '/(?:[A-Z].*)(?:[a-z].*)(?:[0-9].*)(?:\W.*).{8,16}/';
+        $expReg = '/^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8}$/';
         if (!preg_match($expReg, $pass)) {
             return 'La contraseña no cumple las condiciones de seguridad';
         }
@@ -41,7 +41,7 @@ class Usuario
     }
     public function setUsu(string $usu)
     {
-        if (sizeof($usu) < 5) {
+        if (strlen($usu) < 5) {
             return "El nombre de usuario de be tener al menos 5 caracteres";
         }
         return "";

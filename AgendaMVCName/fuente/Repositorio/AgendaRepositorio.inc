@@ -11,10 +11,12 @@ class AgendaRepositorio
     {
         if ($conId) {
             $sql = 'SELECT a.Nombre,Edad,Telefono,p.nombre as Provincia,idAgenda 
-            FROM agenda a INNER JOIN provincia p on  a.codProvincia = p.codProvincia';
+            FROM agenda a INNER JOIN provincia p on  a.codProvincia = p.codProvincia
+            WHERE propietario = ' . $_SESSION['login'];
         } else {
             $sql = 'SELECT a.Nombre,Edad,Telefono,p.nombre as Provincia 
-                FROM agenda a INNER JOIN provincia p on  a.codProvincia = p.codProvincia';
+                FROM agenda a INNER JOIN provincia p on  a.codProvincia = p.codProvincia
+                WHERE propietario = ' . $_SESSION['login'];
         }
         require_once __DIR__ . '/../nucleo/conexionBd.inc';
         try {
@@ -36,8 +38,8 @@ class AgendaRepositorio
 
     public function addAmigo(Amigo $amigo): bool
     {
-        $sql = 'INSERT INTO agenda(nombre,edad,telefono,codProvincia)
-         SELECT :nombre,:edad,:telefono,codProvincia
+        $sql = 'INSERT INTO agenda(nombre,edad,telefono,codProvincia,propietario)
+         SELECT :nombre,:edad,:telefono,codProvincia,' . $_SESSION['login'] . '
          FROM provincia
          WHERE nombre = :provincia';
         require_once __DIR__ . '/../nucleo/conexionBd.inc';
@@ -87,8 +89,9 @@ class AgendaRepositorio
     {
         $sql = "SELECT a.Nombre,Edad,Telefono,p.nombre as Provincia 
                 FROM agenda a INNER JOIN provincia p on  a.codProvincia = p.codProvincia
-                WHERE p.nombre LIKE :busca 
-                OR a.Nombre LIKE :buscaN";
+                WHERE (p.nombre LIKE :busca 
+                OR a.Nombre LIKE :buscaN) 
+                AND propietario = " . $_SESSION['login'];
 
         require_once __DIR__ . '/../nucleo/conexionBd.inc';
         try {

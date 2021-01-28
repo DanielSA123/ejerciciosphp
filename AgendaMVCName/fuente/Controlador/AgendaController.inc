@@ -44,12 +44,15 @@ class AgendaController
                 try {
                     if (!(new Repositorio\AgendaRepositorio)->addAmigo($amigo)) {
                         /* no se puede insertar */
+                        var_dump("error");
                     }
                     unset($datos);
                     unset($amigo);
                 } catch (\PDOException $ex) {
+                    var_dump($ex);
                     //tratar excepcion
                 } catch (\Exception $ex) {
+                    var_dump($ex);
                     //tratar excepcion
                 }
             } catch (AE $ex) {

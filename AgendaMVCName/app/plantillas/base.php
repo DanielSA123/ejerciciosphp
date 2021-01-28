@@ -36,17 +36,17 @@
            controlador (y método) que debe procesar la petición
       -->
         <?php if (isset($_SESSION['login'])) : ?>
-        <a href="index.php?ctl=agregar">Agregar amigo</a> |
-        <a href="index.php?ctl=ver">Ver la agenda</a> |
-        <a href="index.php?ctl=quitar">Eliminar amigo</a>|
-        <a href="index.php?ctl=logout">Cerrar Sesion</a>
-        <form action="index.php?ctl=buscar" method="post">
-            <input type="text" name="nombreBuscar" placeholder="Buscar Amigo/Provincia"
-                value="<?= isset($_POST['nombreBuscar']) ? $_POST['nombreBuscar'] : '' ?>">
-            <input type="submit" value="Buscar" name="busca">
-        </form>
+            <a href="index.php?ctl=agregar">Agregar amigo</a> |
+            <a href="index.php?ctl=ver">Ver la agenda</a> |
+            <a href="index.php?ctl=quitar">Eliminar amigo</a>|
+            <a href="index.php?ctl=logout">Cerrar Sesion</a>
+            <form action="index.php?ctl=buscar" method="post">
+                <input type="text" name="nombreBuscar" placeholder="Buscar Amigo/Provincia" value="<?= isset($_POST['nombreBuscar']) ? $_POST['nombreBuscar'] : '' ?>">
+                <input type="submit" value="Buscar" name="busca">
+            </form>
         <?php else : ?>
-        <a href="index.php?ctl=login">Iniciar Sesion</a>
+            <a href="index.php?ctl=login">Iniciar Sesion</a> |
+            <a href="index.php?ctl=signin">Registrarse</a>
         <?php endif; ?>
         <hr>
     </nav>

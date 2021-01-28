@@ -8,7 +8,7 @@ class UsuarioRepositorio
 {
     public function findPass(string $usu, string $pass)
     {
-        $sql = "SELECT pass 
+        $sql = "SELECT idUsuario,pass 
         FROM usuario
          WHERE usuario = :usu";
         require_once __DIR__ . '/../nucleo/conexionBd.inc';
@@ -28,7 +28,7 @@ class UsuarioRepositorio
         }
         if (!empty($lectura)) {
             if (password_verify($pass, $lectura[0]['pass'])) {
-                $_SESSION['login'] = true;
+                $_SESSION['login'] = $lectura[0]['idUsuario'];
                 return "";
             } else {
                 return $error = "El usuario o contraseña es incorrecto";

@@ -12,10 +12,10 @@
     $contenido que provocará que se muestre la salida del buffer dentro dicha
     página "base.php"
 */
- ?>
+?>
 <?php ob_start() ?>
 
 
- <?php $contenido = ob_get_clean() ?>
+<?php $contenido = ob_get_clean() ?>
 
- <?php include 'base.php' ?>
+<?php include 'base.php' ?>

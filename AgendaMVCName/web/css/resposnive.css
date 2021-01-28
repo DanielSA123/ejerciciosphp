@@ -24,3 +24,9 @@ tr {
 nav form {
     float: right;
 }
+
+.error {
+    font-size: medium;
+    font-style: italic;
+    color: red;
+}

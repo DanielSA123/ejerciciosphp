@@ -13,6 +13,9 @@
     el controlador que debe decidir cuál es la vista que se debe mostrar
 */
 $mapeoRutas =
-  array('inicio' =>
-          array('controller' =>'defaultController', 'action' =>'inicio'),
-       );
+  array(
+    'inicio' =>
+    array('controller' => 'defaultController', 'action' => 'inicio'),
+    'listaDeProductos' =>
+    array('controller' => 'ProductosController', 'action' => 'listarProductos'),
+  );

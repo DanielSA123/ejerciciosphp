@@ -38,8 +38,8 @@ class LoginController
             $pass = $_POST['pass'];
             $passre = $_POST['passre'];
             require_once __DIR__ . '/../Modelo/usuario.inc';
-            try {
-                $usu = new Usuario($usu, $pass, $passre);
+            $usuario = new Usuario($usu, $pass, $passre);
+            if (!$errores = $usuario->getErrores()) {
                 require_once __DIR__ . '/../Repositorio/UsuarioRepositorio.inc';
                 try {
                     if ((new UsuarioRepositorio)->registrarUsuario($usu, $pass)) {
@@ -52,8 +52,7 @@ class LoginController
                 } catch (Exception $ex) {
                     echo "Error 2";
                 }
-            } catch (\Exception $ex) {
-                $errores = $usu->getErrores();
+            } else {
                 include __DIR__ . '/../../app/plantillas/registrar.php';
             }
         } else {

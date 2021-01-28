@@ -4,7 +4,7 @@
 <form action="" method="post">
     <fieldset>
         <legend>Nuevo Usariuo</legend>
-        <label>Usuario: <input type="text" name="usuario" value=""></label>
+        <label>Usuario: <input type="text" name="usu" value=""></label>
         <p class="error"><?= isset($errores['usu']) ? $errores['usu'] : "" ?></p>
         <br><br>
         <label>Contraseña: <input type="password" name="pass" value=""></label>
