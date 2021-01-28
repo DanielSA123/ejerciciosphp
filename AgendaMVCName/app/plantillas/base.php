@@ -15,34 +15,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href='web/css/resposnive.css' />
 
-    <style>
-        header {
-            background: orange;
-            position: relative;
-        }
-
-        .headerBase h1 {
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-            font-size: 2.2rem;
-            text-align: center;
-        }
-
-        table,
-        td,
-        th,
-        tr {
-            margin: auto;
-            position: relative;
-            text-align: center;
-            border: 1px solid black;
-            border-collapse: collapse;
-            padding: 5px;
-        }
-
-        nav form {
-            float: right;
-        }
-    </style>
 
 </head>
 
@@ -64,16 +36,17 @@
            controlador (y método) que debe procesar la petición
       -->
         <?php if (isset($_SESSION['login'])) : ?>
-            <a href="index.php?ctl=agregar">Agregar amigo</a> |
-            <a href="index.php?ctl=ver">Ver la agenda</a> |
-            <a href="index.php?ctl=quitar">Eliminar amigo</a>|
-            <a href="index.php?ctl=logout">Cerrar Sesion</a>
-            <form action="index.php?ctl=buscar" method="post">
-                <input type="text" name="nombreBuscar" placeholder="Buscar Amigo/Provincia" value="<?= isset($_POST['nombreBuscar']) ? $_POST['nombreBuscar'] : '' ?>">
-                <input type="submit" value="Buscar" name="busca">
-            </form>
+        <a href="index.php?ctl=agregar">Agregar amigo</a> |
+        <a href="index.php?ctl=ver">Ver la agenda</a> |
+        <a href="index.php?ctl=quitar">Eliminar amigo</a>|
+        <a href="index.php?ctl=logout">Cerrar Sesion</a>
+        <form action="index.php?ctl=buscar" method="post">
+            <input type="text" name="nombreBuscar" placeholder="Buscar Amigo/Provincia"
+                value="<?= isset($_POST['nombreBuscar']) ? $_POST['nombreBuscar'] : '' ?>">
+            <input type="submit" value="Buscar" name="busca">
+        </form>
         <?php else : ?>
-            <a href="index.php?ctl=login">Iniciar Sesion</a>
+        <a href="index.php?ctl=login">Iniciar Sesion</a>
         <?php endif; ?>
         <hr>
     </nav>

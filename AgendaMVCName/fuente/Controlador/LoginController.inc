@@ -2,7 +2,10 @@
 
 namespace miId\App\fuente\Controlador;
 
+use Exception;
+use miId\App\fuente\Modelo\Usuario;
 use miId\App\fuente\Repositorio\UsuarioRepositorio;
+use PDOException;
 
 class LoginController
 {
@@ -30,5 +33,31 @@ class LoginController
 
     public function registrarUsuario()
     {
+        if (isset($_POST['ok'])) {
+            $usu = $_POST['usu'];
+            $pass = $_POST['pass'];
+            $passre = $_POST['passre'];
+            require_once __DIR__ . '/../Modelo/usuario.inc';
+            try {
+                $usu = new Usuario($usu, $pass, $passre);
+                require_once __DIR__ . '/../Repositorio/UsuarioRepositorio.inc';
+                try {
+                    if ((new UsuarioRepositorio)->registrarUsuario($usu, $pass)) {
+                        header('Location: index.php');
+                    } else {
+                        //errores
+                    }
+                } catch (PDOException $ex) {
+                    echo "Error 1";
+                } catch (Exception $ex) {
+                    echo "Error 2";
+                }
+            } catch (\Exception $ex) {
+                $errores = $usu->getErrores();
+                include __DIR__ . '/../../app/plantillas/registrar.php';
+            }
+        } else {
+            include __DIR__ . '/../../app/plantillas/registrar.php';
+        }
     }
 }
