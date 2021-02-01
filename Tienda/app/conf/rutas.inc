@@ -18,4 +18,10 @@ $mapeoRutas =
     array('controller' => 'defaultController', 'action' => 'inicio'),
     'listaDeProductos' =>
     array('controller' => 'ProductosController', 'action' => 'listarProductos'),
+    'cesta' =>
+    array('controller' => 'ProductosController', 'action' => 'mostrarCesta'),
+    'iniciarSesion' =>
+    array('controller' => 'UsuarioController', 'action' => 'iniciarSesion'),
+    'cerrarSesion' =>
+    array('controller' => 'UsuarioController', 'action' => 'cerrarSesion'),
   );

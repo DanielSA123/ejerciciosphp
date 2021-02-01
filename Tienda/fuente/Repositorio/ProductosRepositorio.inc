@@ -1,7 +1,7 @@
 <?php
 class ProductosRepositorio
 {
-    public function findProductoById(int $id): array
+    public function findProductoById(int $id): object
     {
         $sql = "SELECT id,nombre,nombre_corto,descripcion,pvp,familia
          FROM productos 
@@ -12,7 +12,7 @@ class ProductosRepositorio
             $con = (new ConexionBd())->getConexion();
             $stm = $con->prepare($sql);
             $stm->execute([":id" => $id]);
-            return $stm->fetch(\PDO::FETCH_ASSOC);
+            return $stm->fetch(\PDO::FETCH_OBJ);
         } catch (\PDOException $ex) {
             throw $ex;
         } catch (\Exception $ex) {

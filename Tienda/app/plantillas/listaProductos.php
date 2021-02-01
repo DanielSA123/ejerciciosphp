@@ -20,25 +20,25 @@
             <tbody>
                 <?php
                 foreach ($respuesta as $filas) : ?>
-                    <tr>
-                        <th scope='row' class='text-center'>
-                            <form action='<?= $_SERVER[' PHP_SELF'] ?>' method='POST'>
-                                <input type='hidden' name='id' value='<?= $filas->id ?>'>
-                                <input type='submit' class='btn btn-primary' name='comprar' value='Añadir'>
-                            </form>
-                        </th>
-                        <td><?= $filas->nombre ?>, Precio: <?= $filas->pvp ?> (€)</td>
-                        <td class='text-center'>
-                            <?php
+                <tr>
+                    <th scope='row' class='text-center'>
+                        <form action='' method='POST'>
+                            <input type='hidden' name='id' value='<?= $filas->id ?>'>
+                            <input type='submit' class='btn btn-primary' name='comprar' value='Añadir'>
+                        </form>
+                    </th>
+                    <td><?= $filas->nombre ?>, Precio: <?= $filas->pvp ?> (€)</td>
+                    <td class='text-center'>
+                        <?php
                             if (isset($_SESSION['cesta'][$filas->id])) : ?>
-                                <i class='fas fa-check fa-2x'></i>
-                            <?php else : ?>
-                                <i class='far fa-times-circle fa-2x'></i>
-                            <?php
+                        <i class='fas fa-check fa-2x'></i>
+                        <?php else : ?>
+                        <i class='far fa-times-circle fa-2x'></i>
+                        <?php
                             endif;
                             ?>
-                        <td>
-                    </tr>
+                    <td>
+                </tr>
                 <?php
                 endforeach;
                 ?>
