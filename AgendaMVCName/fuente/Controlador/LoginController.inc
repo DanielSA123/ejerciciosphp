@@ -12,7 +12,7 @@ class LoginController
     public function iniciarSesion()
     {
         if (isset($_POST['ok'])) {
-            require_once __DIR__ . '/../Repositorio/UsuarioRepositorio.inc';
+            // require_once __DIR__ . '/../Repositorio/UsuarioRepositorio.inc';
             $error = (new UsuarioRepositorio())->findPass($_POST['usuario'], $_POST['pass']);
             if (empty($error)) {
                 header('Location: index.php');
@@ -40,7 +40,7 @@ class LoginController
             require_once __DIR__ . '/../Modelo/usuario.inc';
             $usuario = new Usuario($usu, $pass, $passre);
             if (!$errores = $usuario->getErrores()) {
-                require_once __DIR__ . '/../Repositorio/UsuarioRepositorio.inc';
+                // require_once __DIR__ . '/../Repositorio/UsuarioRepositorio.inc';
                 try {
                     if ((new UsuarioRepositorio)->registrarUsuario($usu, $pass)) {
                         header('Location: index.php');

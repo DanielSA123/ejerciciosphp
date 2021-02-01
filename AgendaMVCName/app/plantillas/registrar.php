@@ -3,6 +3,8 @@
 <h1>Registrarse</h1>
 <form action="" method="post">
     <fieldset>
+
+        <!-- TODO: Agregar campos: Nombre,Apellidos,Calle,Ciudad,Provincia,CP,Email,Telefono  -->
         <legend>Nuevo Usariuo</legend>
         <label>Usuario: <input type="text" name="usu" value=""></label>
         <p class="error"><?= isset($errores['usu']) ? $errores['usu'] : "" ?></p>
