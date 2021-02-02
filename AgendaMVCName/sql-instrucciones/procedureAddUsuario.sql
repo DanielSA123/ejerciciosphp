@@ -15,24 +15,26 @@ create or alter procedure addUsusario
 	@pass nvarchar(255)
 ) as 
 begin
-	begin transaction
+	begin tran;
 		declare @idUsuario int;
-		declare @ERROR nvarchar(255);
+		declare @error nvarchar(255);
+		declare @severidad smallint;
+		declare @estado smallint;
 		begin try 
-		insert into usuario(usuario,pass) values(@usuario,@pass);
-		select @idUsuario = SCOPE_IDENTITY();
-		insert into registro(nombre,apelidos,calle,ciudad,provincia,cp,email,telefono,idUsuario)
-			select @nombre,@apellidos,@calle,@ciudad,p.codProvincia,@cp,@email,@telefono,@idUsuario
-			from provincia p
- 			where p.nombre = @provincia
-		commit tran;
+			insert into usuario(usuario,pass) values(@usuario,@pass);
+			select @idUsuario = SCOPE_IDENTITY();
+			insert into registro(nombre,apellidos,calle,ciudad,provincia,cp,email,telefono,idUsuario)
+				select @nombre,@apellidos,@calle,@ciudad,p.codProvincia,@cp,@email,@telefono,@idUsuario
+				from provincia p
+ 				where p.nombre = @provincia
+			commit tran;
 		end try
 		begin catch
 			rollback tran;
-			select @ERROR = ERROR_MESSAGE();
-			throw @ERROR,
-			
-
+			select @error = ERROR_MESSAGE();
+			select @severidad = ERROR_SEVERITY();
+			select @estado = ERROR_STATE();
+			raiserror (@error,@severidad,@estado);
 		end catch
 
 end;

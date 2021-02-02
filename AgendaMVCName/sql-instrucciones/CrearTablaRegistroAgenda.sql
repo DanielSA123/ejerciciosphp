@@ -1,7 +1,7 @@
 use agenda;
 go
 
-CREATE TABLE regisrto(
+CREATE TABLE registro(
 	idRegistro int not null identity,
 	nombre nvarchar(50) not null,
 	apellidos nvarchar(50) not null,

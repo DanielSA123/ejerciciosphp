@@ -74,13 +74,13 @@ class Registro
     /**
      * Set the value of nombre
      *
-     * @return  self
+     * @return  bool
      */
     public function setNombre($nombre)
     {
         $this->nombre = $nombre;
 
-        return $this;
+        return true;
     }
 
     /**
@@ -100,7 +100,7 @@ class Registro
     {
         $this->apellidos = $apellidos;
 
-        return $this;
+        return true;
     }
 
     /**
@@ -120,7 +120,7 @@ class Registro
     {
         $this->calle = $calle;
 
-        return $this;
+        return true;
     }
 
     /**
@@ -140,7 +140,7 @@ class Registro
     {
         $this->ciudad = $ciudad;
 
-        return $this;
+        return true;
     }
 
     /**
@@ -160,7 +160,7 @@ class Registro
     {
         $this->provincia = $provincia;
 
-        return $this;
+        return true;
     }
 
     /**
@@ -180,7 +180,7 @@ class Registro
     {
         $this->cp = $cp;
 
-        return $this;
+        return true;
     }
 
     /**
@@ -200,7 +200,7 @@ class Registro
     {
         $this->email = $email;
 
-        return $this;
+        return true;
     }
 
     /**
@@ -220,6 +220,6 @@ class Registro
     {
         $this->telefono = $telefono;
 
-        return $this;
+        return true;
     }
 }

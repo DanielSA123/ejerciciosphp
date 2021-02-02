@@ -2,8 +2,10 @@
 
 namespace miId\App\fuente\Controlador;
 
+use AmigoException;
 use Exception;
 use miId\App\fuente\Modelo\Usuario;
+use miId\App\fuente\Modelo\Registro;
 use miId\App\fuente\Repositorio\UsuarioRepositorio;
 use PDOException;
 
@@ -37,20 +39,30 @@ class LoginController
             $usu = $_POST['usu'];
             $pass = $_POST['pass'];
             $passre = $_POST['passre'];
-            require_once __DIR__ . '/../Modelo/usuario.inc';
-            $usuario = new Usuario($usu, $pass, $passre);
-            if (!$errores = $usuario->getErrores()) {
-                // require_once __DIR__ . '/../Repositorio/UsuarioRepositorio.inc';
-                try {
-                    if ((new UsuarioRepositorio)->registrarUsuario($usu, $pass)) {
-                        header('Location: index.php');
-                    } else {
-                        //errores
+            $datos = $_POST['datos'];
+            try {
+                $registro = new Registro($datos);
+            } catch (AmigoException $ex) {
+                $errores = $ex->getErrores();
+            }
+            if (!$errores) {
+                $usuario = new Usuario($usu, $pass, $passre);
+
+                if (!$errores = $usuario->getErrores()) {
+                    // require_once __DIR__ . '/../Repositorio/UsuarioRepositorio.inc';
+                    try {
+                        if ((new UsuarioRepositorio)->addInfUsuario($registro, $usuario)) {
+                            header('Location: index.php');
+                        } else {
+                            //errores
+                        }
+                    } catch (PDOException $ex) {
+                        echo "Error 1";
+                    } catch (Exception $ex) {
+                        echo "Error 2";
                     }
-                } catch (PDOException $ex) {
-                    echo "Error 1";
-                } catch (Exception $ex) {
-                    echo "Error 2";
+                } else {
+                    include __DIR__ . '/../../app/plantillas/registrar.php';
                 }
             } else {
                 include __DIR__ . '/../../app/plantillas/registrar.php';

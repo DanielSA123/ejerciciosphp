@@ -16,7 +16,7 @@ class Usuario
         if (!empty($error = $this->setPass($pass, $passre))) {
             $this->errores['pass'] = $error;
         } else {
-            $this->pass = $pass;
+            $this->pass = password_hash($pass, PASSWORD_DEFAULT);
         }
         if (!empty($error = $this->setUsu($usu))) {
             $this->errores['usu'] = $error;
@@ -30,7 +30,7 @@ class Usuario
         if ($pass == "") {
             return "La contraseña no puede estar vacia";
         }
-        $expReg = '/^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8}$/';
+        $expReg = '/^(?=.*[A-Z])(?=.*[!@#$&*?])(?=.*[0-9])(?=.*[a-z]).{8}$/';
         if (!preg_match($expReg, $pass)) {
             return 'La contraseña no cumple las condiciones de seguridad';
         }
@@ -39,6 +39,12 @@ class Usuario
         }
         return "";
     }
+
+    public static function isPassOk($pass)
+    {
+        //TODO: metodo para comprobar la contraseña al iniciar sesion
+    }
+
     public function setUsu(string $usu)
     {
         if (strlen($usu) < 5) {
@@ -49,5 +55,14 @@ class Usuario
     public function getErrores()
     {
         return $this->errores;
+    }
+
+    public function getUsu()
+    {
+        return $this->usu;
+    }
+    public function getPass()
+    {
+        return $this->pass;
     }
 }

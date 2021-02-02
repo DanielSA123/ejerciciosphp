@@ -1,0 +1,491 @@
+header
+{ position: relative;
+  text-align: center;
+}
+
+table
+{ margin: 0 auto;
+}
+
+header .header
+{ display:inline-block;
+}
+
+header h1
+{ padding: 0 25px 0 25px;
+  color:#4CAF50;
+}
+
+img
+{ max-width: 100%;
+  /*max-height: 100%; */
+  height: auto;
+}
+
+#contenido
+{ min-height: 400px;
+}
+
+#carro
+{ font-family: fantasy;
+  font-size: 18px;
+  text-align: left;
+  color: RebeccaPurple;
+  padding: 5px 20px;
+}
+
+/* Tratamiento de formularios y sus elementos (campos y botones) */
+input
+{ padding: 5px 10px;
+  margin: 5px 0;
+  box-sizing: border-box;
+  border-radius: 4px;
+  outline: none;
+}
+
+input[type=text]:focus
+{ -webkit-transition: 0.8s;
+  transition: 0.8s;
+  background-color: #eee;
+  border: 2px solid #555;
+}
+
+/* Específicamente el campo de buscar de la cabecera */
+#buscadorCab input[type=text]
+{ width: 100%;
+  border: 2px solid #ccc;
+  font-size: 14px;
+  background-color: white;
+  background-image: url('/cadtien2018/web/imagenes/buscar2.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  padding: 10px 10px 10px 40px;
+}
+
+/* cualquier botón */
+input[type=button], input[type=submit], input[type=reset]
+{ background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  margin: 4px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+legend
+{ font-size: 16px;
+  color: #4CAF50;
+  font-weight: bold;
+}
+
+label
+{ font-size: 16px;
+  color: purple;
+  font-weight: bold;
+}
+
+/*articulos agotados o pocos */
+.agotado
+{ color: red;
+  font-size: 18px;
+  font-family: inherit;
+  font-weight: inherit;
+}
+
+/* Descripción del artículo */
+.desc
+{ font-size: 18px;
+  font-weight: 500;
+  font-family: monospace;
+  font-stretch: semi-condensed;
+  font-kerning: auto;
+  color: dark-grey;
+}
+
+.desc h3
+{ color: FireBrick;
+  padding-left: 10px;
+}
+
+.desc a
+{ text-decoration: none;
+  color: inherit;
+}
+
+.desc table
+{ margin: 0;
+}
+
+.desc p
+{ padding-left: 15px;
+}
+
+/* Para el formulario de registro */
+.registro h1
+{ color: #4CAF50;
+}
+
+.registro p
+{ font-size: 15px;
+  font-weight: 400;
+  font-family: fantasy;
+  font-stretch: expanded;
+  font-kerning: auto;
+  color: dark-grey;
+}
+
+.contenedor
+{ position: relative;
+}
+
+.cesta
+{ position:relative;
+  left=0;
+  bottom=0px;
+  padding: 0 25px 0 15px;
+  z-index: -1;
+}
+
+.contadorCesta
+{ position:relative;
+  right:-15px;
+  bottom:0;
+  color:red;
+  z-index: 1;
+}
+
+.cestaVacia
+{ position:absolute;
+  display: none;
+
+}
+
+.buscadorCab
+{ padding: 0 30px 0 15px;
+
+}
+
+/*** CSS para el carro de la compra ***/
+.carrito
+{ position: relative;
+}
+
+.carroImg::before
+{ content: url("/cadtien2018/web/imagenes/miCarro40.png");
+  display:block;
+  cursor: pointer;
+  padding: 0px 30px;
+}
+
+.contenidoCarrito
+{ display: none; /*no se muestra y no ocupa lugar */
+  position: absolute; /* define su posición como relativa al elemento contendor (el div dropdown) más cercano */
+  left: 0;
+  padding:0;
+  background-color: #f9f9f9;
+  min-width: 500px;  /* ancho mínimo del elemento */
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1; /* Posición del elemento en el orden de la pila */
+}
+/*TODO mirar alinear botones a la izquierda */
+.contenidoCarrito .enLinea a
+{ display: inline-block;
+}
+
+.contenidoCarrito a
+{ color: #4CAF50;
+  padding: 8px 16px;
+  text-decoration: none;
+  text-align: left;
+  display: block; /*ocupa todo el acho */
+}
+
+.contenidoCarrito a:hover
+{ background-color: #f1f1f1 /*cambia el color de fondo */
+}
+
+.total
+{ font-size: 22px;
+  color: DarkBlue;
+  text-align: right;
+  padding-right: 20px;
+}
+
+.carrito:hover .contenidoCarrito
+{ display: block; /* cambia la definición a elementos de bloque */
+}
+
+/*** CSS sobre la información de la cuenta del usuario y Sesión **/
+.infCuentaCab
+{ position: relative;
+}
+
+.saludo
+{ padding:16px 1px;
+  color:#4CAF50;
+  font-size: 18px; /* tamaño de la funte */
+  border: none; /* sin borde */
+  cursor: pointer; /* tipo de cursor */
+}
+
+.contenidoMiCta
+{ display: none; /*no se muestra y no ocupa lugar */
+  position: absolute; /* define su posición como relativa al elemento contendor (el div dropdown) más cercano */
+  left: 0;
+  padding:0;
+  background-color: #f9f9f9;
+  min-width: 160px;/* ancho mínimo del elemento */
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1; /* Posición del elemento en el orden de la pila */
+}
+
+.contenidoMiCta a
+{ color: #4CAF50;
+  padding: 8px 16px;
+  text-decoration: none;
+  text-align: left;
+  display: block; /*ocupa todo el acho */
+}
+
+.contenidoMiCta a:hover
+{ background-color: #f1f1f1 /*cambia el color de fondo */
+}
+
+.infCuentaCab:hover .contenidoMiCta
+{ display: block; /* cambia la definición a elementos de bloque */
+}
+
+/** CSS para mostrar los artículos a los clientes */
+.verArticulos
+{ font-family: fantasy;
+  font-size: 20px;
+  font-style: italic;
+  font-weight: 500;
+  text-transform: capitalize;
+  color: #444;
+}
+
+.verArticulos a
+{ text-decoration: none;
+  color: inherit;
+}
+
+.precio
+{ font-size: 50px;
+  color: CornflowerBlue;
+  font-weight: bold;
+  display: block;
+  padding: 0px 20px;
+}
+
+/** CSS sobre la finalización de Sesión (LOGOUT) */
+.despedida
+{ position: relative;
+  width: 40%;
+  height: 30%;
+  margin: 0 auto;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  background-color: #f9f9f9;
+  z-index: 2;
+}
+
+.despedida h4
+{ text-align: center;
+  text-decoration: none;
+  color: #4CAF50;
+  display: block;
+}
+
+/* CSS para Categorias */
+.categorias
+{ position: relative;
+}
+
+.contenidoCategoria
+{ display: none; /*no se muestra y no ocupa lugar */
+  position: relative; /* define su posición como relativa al elemento contendor (el div dropdown) más cercano */
+  left: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+  min-width: 300px;/* ancho mínimo del elemento */
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1; /* Posición del elemento en el orden de la pila */
+}
+
+.contenidoCategoria span
+{ color: #4CAF50;
+  padding: 8px 16px;
+  text-decoration: none;
+  text-align: left;
+  display: block; /*ocupa todo el acho */
+}
+
+.contenidoCategoria span:hover
+{ background-color: #f1f1f1 /*cambia el color de fondo */
+}
+
+.categorias:hover .contenidoCategoria {
+  display: block; /* cambia la definición a elementos de bloque */
+}
+
+/* Definición para los divs contenedores de botones
+   Define posición relative y para definir su posción relativa a la posción
+   que tendría normalmente y
+   display inline-block para que los elementos contenidos se sitúen uno
+   a continuación de otros (no como elementos de bloque)*/
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Definición de los botones que que son deplegables
+  Están dentro del div dropdown qu3 econtiene a los botones  -*/
+.dropbtn {
+  background-color: #4CAF50; /* Color de fondo */
+  color: white; /* Color de las letras */
+  padding: 16px; /* relleno a los cuatro lados */
+  font-size: 16px; /* tamaño de la funte */
+  border: none; /* sin borde */
+  cursor: pointer; /* tipo de cursor */
+}
+
+/* Definición del contenido del botón cuando se despliega
+   Dedinido a la misma altura que el botón dentro del div dropdown
+   Define sus elementos como ocultos para no mostrarlos */
+.dropdown-content {
+  display: none; /*no se muestra y no ocupa lugar */
+  position: absolute; /* define su posición como relativa al elemento contendor (el div dropdown) más cercano */
+  right: 0;
+  background-color: #f9f9f9;
+  min-width: 160px;/* ancho mínimo del elemento */
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1; /* Posición del elemento en el orden de la pila */
+}
+
+/* Definición de los elementos de vínculo dentro del dropdown-content */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block; /*ocupa todo el acho */
+}
+
+/* Definición de los elementos de vículo cuando se pasa el ratón por encima */
+.dropdown-content a:hover {
+  background-color: #f1f1f1 /*cambia el color de fondo */
+}
+
+/* Cambio en la definición del contenedor dropdown y del contenido desplegable
+   cuando se pasa el ratón por encima */
+.dropdown:hover .dropdown-content {
+  display: block; /* cambia la definición a elementos de bloque */
+}
+
+/* Define comportamiento cuando se pasa el ratón por encima del div o del botón */
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+
+.actualizaImagen hr
+{ display: block;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: double;
+  border-width: 4px;
+}
+
+/* Define aspecto de las tablas dentro de actulizar imágenes */
+.actualizaImagen table
+{ display: table;
+  border: 1px double gray;
+  border-collapse: separate;
+}
+.actualizaImagen th
+{ display: table-cell;
+  padding: 2px 10px;
+  border: 1px double gray;
+  border-collapse: separate;
+}
+
+.actualizaImagen td
+{ display: table-cell;
+  padding: 2px 10px;
+  border: 1px double gray;
+  border-collapse: separate;
+}
+/*
+.iconos-cart::before {
+    content: "\e605";
+}
+
+[class^="iconos-"], [class*=" iconos-"] {
+    font-family: 'mm-custom-icon';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+#header .header__basket a span {
+    width: 19px;
+    height: 19px;
+    text-align: center;
+    line-height: normal;
+    font-size: 14px;
+    font-family: "mm-webbold",arial;
+    position: absolute;
+    top: 0;
+    right: 0;
+    box-shadow: rgba(0,0,0,0.298039) 0px 0px 5px;
+    display: inline-block;
+    padding: 0px;
+    border: 1px solid #f1f1f1;
+    background: #fff;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    border-radius: 50%;
+}
+.content__basket--overlay.empty {
+    width: 100%;
+    max-width: 180px;
+}
+.content__basket--overlay {
+    right: 0;
+}
+.content__basket--overlay {
+    display: none;
+    position: absolute;
+    top: 66px;
+    right: 9px !important;
+    z-index: 1000;
+    width: 439px;
+    border: 1px solid #ddd;
+    border-top: 3px solid #d51900;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    background-color: #fff;
+    -webkit-box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    text-align: left;
+    white-space: normal;
+    background-clip: padding-box;
+    max-height: 532px;
+}
+.content__basket--overlay .minibasket__loading {
+    z-index: 1001;
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url("//d1cquh7j3szdp1.cloudfront.net/img/bg-loading.png");
+}*/

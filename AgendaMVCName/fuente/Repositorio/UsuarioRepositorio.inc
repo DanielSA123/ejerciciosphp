@@ -4,6 +4,7 @@ namespace miId\App\fuente\Repositorio;
 
 use miId\App\fuente\Nucleo\ConexionBd;
 use miId\App\fuente\Modelo\Registro;
+use miId\App\fuente\Modelo\Usuario;
 
 class UsuarioRepositorio
 {
@@ -62,9 +63,32 @@ class UsuarioRepositorio
 
 
 
-    function addRegistro(Registro $obj)
+    function addInfUsuario(Registro $obj, Usuario $usu)
     {
-        $sql = "INSERT INTO registro(Nombre,Apellidos,calle,ciudad,provincia,cp,email,telefono,idUsuario) 
-        select *";
+        $sql = 'exec addUsuario(
+        $reg->getNombre(),
+        $reg->getApellidos(),
+        $reg->getCalle(),
+        $reg->getCiudad(),
+        $reg->getProvincia(),
+        $reg->getCp(),
+        $reg->getEmail(),
+        $reg->getTelefono(),
+        $usu->getUsu(),
+        $usu->getPass())';
+
+        try {
+            $con = (new ConexionBd())->getConexion();
+            $con->exec($sql);
+            return true;
+        } catch (\PDOException $ex) {
+            throw $ex;
+            return false;
+        } catch (\Exception $ex) {
+            throw $ex;
+            return false;
+        } finally {
+            unset($con);
+        }
     }
 }
