@@ -30,3 +30,33 @@ nav form {
     font-style: italic;
     color: red;
 }
+
+
+input{
+    padding: 5px;
+    margin-left: 20px;
+    font-size: 1.3rem;
+}
+
+fieldset .row{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  
+}
+fieldset label{
+    display: flex;
+    font-size: 1.3rem;
+    min-width: 30%;
+    max-width: 50%;
+    margin: 20px 30px;
+    
+}
+
+input[type="submit"]{
+    margin:  30px 20px;
+    text-align: center;
+    font-weight: bold;
+    background-color: orange;
+}
+
