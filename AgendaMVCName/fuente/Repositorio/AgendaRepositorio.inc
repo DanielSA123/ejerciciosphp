@@ -18,7 +18,7 @@ class AgendaRepositorio
                 FROM agenda a INNER JOIN provincia p on  a.codProvincia = p.codProvincia
                 WHERE propietario = ' . $_SESSION['login'];
         }
-        require_once __DIR__ . '/../nucleo/conexionBd.inc';
+        // require_once __DIR__ . '/../nucleo/conexionBd.inc';
         try {
             $con = (new CBD())->getConexion();
             $stm = $con->prepare($sql);
@@ -42,7 +42,7 @@ class AgendaRepositorio
          SELECT :nombre,:edad,:telefono,codProvincia,' . $_SESSION['login'] . '
          FROM provincia
          WHERE nombre = :provincia';
-        require_once __DIR__ . '/../nucleo/conexionBd.inc';
+        // require_once __DIR__ . '/../nucleo/conexionBd.inc';
         try {
             $con = (new CBD())->getConexion();
             $stm = $con->prepare($sql);
@@ -70,7 +70,7 @@ class AgendaRepositorio
         $sql = "DELETE agenda
         WHERE idAgenda = $id";
 
-        require_once __DIR__ . '/../nucleo/conexionBd.inc';
+        // require_once __DIR__ . '/../nucleo/conexionBd.inc';
         try {
             $con = (new CBD())->getConexion();
             return (bool) $con->exec($sql);
@@ -93,7 +93,7 @@ class AgendaRepositorio
                 OR a.Nombre LIKE :buscaN) 
                 AND propietario = " . $_SESSION['login'];
 
-        require_once __DIR__ . '/../nucleo/conexionBd.inc';
+        // require_once __DIR__ . '/../nucleo/conexionBd.inc';
         try {
             $busqueda = '%' . $busqueda . '%';
             $con = (new CBD())->getConexion();

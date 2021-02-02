@@ -10,13 +10,13 @@ class AgendaController
 {
     public function verTodaAgenda()
     {
-        require_once __DIR__ . '/../Repositorio/AgendaRepositorio.inc';
+        // require_once __DIR__ . '/../Repositorio/AgendaRepositorio.inc';
         $datos = (new Repositorio\AgendaRepositorio())->findAllAmigos();
         require __DIR__ . '/../../app/plantillas/mostrarTodos.php';
     }
     public function quitarAmigos()
     {
-        require_once __DIR__ . '/../Repositorio/AgendaRepositorio.inc';
+        // require_once __DIR__ . '/../Repositorio/AgendaRepositorio.inc';
         $repoAgenda = new Repositorio\AgendaRepositorio();
         if (!isset($_POST['ok'])) {
             $datos = $repoAgenda->findAllAmigos(true);
@@ -40,7 +40,7 @@ class AgendaController
             $datos = $_POST['datos'];
             try {
                 $amigo = new Amigo($datos);
-                require_once __DIR__ . '/../Repositorio/AgendaRepositorio.inc';
+                // require_once __DIR__ . '/../Repositorio/AgendaRepositorio.inc';
                 try {
                     if (!(new Repositorio\AgendaRepositorio)->addAmigo($amigo)) {
                         /* no se puede insertar */
@@ -59,7 +59,7 @@ class AgendaController
                 $errores = $ex->getErrores();
             }
         }
-        require_once __DIR__ . '/../Repositorio/ProvinciaRepositorio.inc';
+        // require_once __DIR__ . '/../Repositorio/ProvinciaRepositorio.inc';
         $provincias = (new Repositorio\ProvinciaRepositorio)->findAllProvincias();
         require __DIR__ . '/../../app/plantillas/agregarAmigo.php';
     }
@@ -68,7 +68,7 @@ class AgendaController
     {
         if (isset($_POST['busca'])) {
             $nombre = $_POST['nombreBuscar'];
-            require_once __DIR__ . '/../Repositorio/AgendaRepositorio.inc';
+            // require_once __DIR__ . '/../Repositorio/AgendaRepositorio.inc';
             try {
                 $datos = (new Repositorio\AgendaRepositorio)->findAllByNombreOrProvincia($nombre);
                 require __DIR__ . '/../../app/plantillas/busquedaAmigos.php';

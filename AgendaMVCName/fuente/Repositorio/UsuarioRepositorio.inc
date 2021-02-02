@@ -3,6 +3,7 @@
 namespace miId\App\fuente\Repositorio;
 
 use miId\App\fuente\Nucleo\ConexionBd;
+use miId\App\fuente\Modelo\Registro;
 
 class UsuarioRepositorio
 {
@@ -11,7 +12,7 @@ class UsuarioRepositorio
         $sql = "SELECT idUsuario,pass 
         FROM usuario
          WHERE usuario = :usu";
-        require_once __DIR__ . '/../nucleo/conexionBd.inc';
+        // require_once __DIR__ . '/../nucleo/conexionBd.inc';
         try {
             $con = (new ConexionBd())->getConexion();
             $stm = $con->prepare($sql);
@@ -40,9 +41,9 @@ class UsuarioRepositorio
 
     function registrarUsuario($usu, $pass)
     {
-        $sql = "INSERT INTO usuario(usuario,pass) values(:usu,:pass)";
+        $sql = "INSERT INTO usuario(usuario,pass,rol) values(:usu,:pass,'usuarios')";
         $guardar = password_hash($pass, PASSWORD_DEFAULT);
-        require_once __DIR__ . '/../nucleo/conexionBd.inc';
+        // require_once __DIR__ . '/../nucleo/conexionBd.inc';
         try {
             $con = (new ConexionBd())->getConexion();
             $stm = $con->prepare($sql);
@@ -57,5 +58,13 @@ class UsuarioRepositorio
             $stm = null;
             $con = null;
         }
+    }
+
+
+
+    function addRegistro(Registro $obj)
+    {
+        $sql = "INSERT INTO registro(Nombre,Apellidos,calle,ciudad,provincia,cp,email,telefono,idUsuario) 
+        select *";
     }
 }
