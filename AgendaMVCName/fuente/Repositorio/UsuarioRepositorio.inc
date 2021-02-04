@@ -65,21 +65,25 @@ class UsuarioRepositorio
 
     function addInfUsuario(Registro $obj, Usuario $usu)
     {
-        $sql = 'exec addUsuario(
-        $reg->getNombre(),
-        $reg->getApellidos(),
-        $reg->getCalle(),
-        $reg->getCiudad(),
-        $reg->getProvincia(),
-        $reg->getCp(),
-        $reg->getEmail(),
-        $reg->getTelefono(),
-        $usu->getUsu(),
-        $usu->getPass())';
+        $sql = 'exec addUsuario(:nom,:ape,:calle,:ciudad,:provincia,:cp,:email,:tel,:usu,:pass)';
 
         try {
             $con = (new ConexionBd())->getConexion();
-            $con->exec($sql);
+            $stm = $con->prepare($sql);
+            var_dump($obj);
+            var_dump($usu);
+            $stm->bindValue(":nom", $obj->getNombre());
+            $stm->bindValue(":ape", $obj->getApellidos());
+            $stm->bindValue(":calle", $obj->getCalle());
+            $stm->bindValue(":ciudad", $obj->getCiudad());
+            $stm->bindValue(":provincia", $obj->getProvincia());
+            $stm->bindValue(":cp", $obj->getCp());
+            $stm->bindValue(":email", $obj->getEmail());
+            $stm->bindValue(":tel", $obj->getTelefono());
+            $stm->bindValue(":usu", $usu->getUsu());
+            $stm->bindValue(":pass", $usu->getPass());
+
+            $stm->execute();
             return true;
         } catch (\PDOException $ex) {
             throw $ex;

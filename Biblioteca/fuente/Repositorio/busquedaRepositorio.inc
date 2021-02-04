@@ -1,11 +1,13 @@
 <?php
-class BusquedaRepositorio {
-  public function inicio(){
-    $sql = "SELECT l.id, l.titulo, g.nombre as genero, l.autor, l.idioma, l.resumen, g.descripcion
+class BusquedaRepositorio
+{
+  public function inicio()
+  {
+    $sql = "SELECT l.idLibro, l.titulo, g.nombre as genero, l.autor, l.idioma, l.resumen, g.descripcion
             from Libro as l inner join Genero as g
-            on l.idGenero = g.id";
+            on l.idGenero = g.idGenero";
     try {
-      require __DIR__. "/../../core/conexionBd.inc";
+      require __DIR__ . "/../../core/conexionBd.inc";
       $con = (new ConexionBd())->getConexion();
       $stm = $con->prepare($sql);
       $stm->execute();
@@ -18,7 +20,8 @@ class BusquedaRepositorio {
     }
   }
 
-  public function buscarDatos(string $genero, string $titulo, string $idioma, string $autor){
+  public function buscarDatos(string $genero, string $titulo, string $idioma, string $autor)
+  {
     //no funciona
     /*
     select * from Genero
@@ -37,9 +40,9 @@ class BusquedaRepositorio {
     on l.idGenero = g.id
     where nombre = @texto
     */
-    $sql = "SELECT l.id, l.titulo, g.nombre as genero, l.autor, l.idioma, l.resumen, g.descripcion
+    $sql = "SELECT l.idLibro, l.titulo, g.nombre as genero, l.autor, l.idioma, l.resumen, g.descripcion
             from Libro as l inner join Genero as g
-            on l.idGenero = g.id
+            on l.idGenero = g.idGenero
             where nombre LIKE '%'+:genero+'%' AND titulo LIKE '%'+:titulo+'%' AND idioma LIKE '%'+:idioma+'%' AND autor LIKE '%'+:autor+'%'";
 
 
@@ -65,7 +68,7 @@ class BusquedaRepositorio {
     where nombre LIKE '%'+@genero+'%' or titulo LIKE '%'+@titulo+'%' or idioma LIKE '%'+@idioma+'%' or autor LIKE '%'+@autor+'%'
     */
     try {
-      require __DIR__. "/../../core/conexionBd.inc";
+      require __DIR__ . "/../../core/conexionBd.inc";
       $con = (new ConexionBd())->getConexion();
       $stm = $con->prepare($sql);
       $stm->bindValue(':genero', $genero);
@@ -82,15 +85,16 @@ class BusquedaRepositorio {
     }
   }
 
-  public function verReservas(int $idLibro){//muestra los datos y si hay libros disponibles para reservar
+  public function verReservas(int $idLibro)
+  { //muestra los datos y si hay libros disponibles para reservar
     $sql = "SELECT l.titulo, l.autor, g.nombre as genero, l.idioma, l.resumen, e.idLibro, e.idUsuario
             from Genero as g inner join Libro as l
-            on l.idGenero = g.id
+            on l.idGenero = g.idGenero
             inner join Ejemplar as e
-            on l.id = e.idLibro
+            on l.idLibro = e.idLibro
             where e.idLibro = $idLibro";
     try {
-      require __DIR__. "/../../core/conexionBd.inc";
+      require __DIR__ . "/../../core/conexionBd.inc";
       $con = (new ConexionBd())->getConexion();
       $stm = $con->prepare($sql);
       $stm->execute();
@@ -103,10 +107,11 @@ class BusquedaRepositorio {
     }
   }
 
-  public function idsDeEjemplar(int $idLibro){//recoge los id de los libros disponibles para reservar
-    $sql = "SELECT id from Ejemplar where idLibro = $idLibro and idUsuario is NULL";
+  public function idsDeEjemplar(int $idLibro)
+  { //recoge los id de los libros disponibles para reservar
+    $sql = "SELECT idEjemplar from Ejemplar where idLibro = $idLibro and idUsuario is NULL";
     try {
-      require __DIR__. "/../../core/conexionBd.inc";
+      require __DIR__ . "/../../core/conexionBd.inc";
       $con = (new ConexionBd())->getConexion();
       $stm = $con->prepare($sql);
       $stm->execute();
@@ -131,7 +136,7 @@ class BusquedaRepositorio {
       /*if ($stm) {
         $_SESSION['nombreUsuario'] = $stm['nombre'];
       }*/
-      /*return $usu;
+  /*return $usu;
     } catch (PDOException $ex) {
       return false;
       throw $ex;
@@ -141,10 +146,11 @@ class BusquedaRepositorio {
     }
   }*/
 
-  public function reservar(int $idEjemplar, int $idUsuario):bool{
-    $sql = "UPDATE Ejemplar SET idUsuario = $idUsuario WHERE id = $idEjemplar";
+  public function reservar(int $idEjemplar, int $idUsuario): bool
+  {
+    $sql = "UPDATE Ejemplar SET idUsuario = $idUsuario WHERE idEjemplar = $idEjemplar";
     try {
-      require __DIR__. "/../../core/conexionBd.inc";
+      require __DIR__ . "/../../core/conexionBd.inc";
       $con = (new ConexionBd())->getConexion();
       $stm = $con->prepare($sql);
       $stm->execute();

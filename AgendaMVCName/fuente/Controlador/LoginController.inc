@@ -45,19 +45,21 @@ class LoginController
             } catch (AmigoException $ex) {
                 $errores = $ex->getErrores();
             }
-            if (!$errores) {
+            if (!isset($errores)) {
                 $usuario = new Usuario($usu, $pass, $passre);
 
                 if (!$errores = $usuario->getErrores()) {
                     // require_once __DIR__ . '/../Repositorio/UsuarioRepositorio.inc';
                     try {
                         if ((new UsuarioRepositorio)->addInfUsuario($registro, $usuario)) {
+
                             header('Location: index.php');
                         } else {
                             //errores
+                            var_dump("no se ha introducido");
                         }
                     } catch (PDOException $ex) {
-                        echo "Error 1";
+                        var_dump($ex->getMessage());
                     } catch (Exception $ex) {
                         echo "Error 2";
                     }

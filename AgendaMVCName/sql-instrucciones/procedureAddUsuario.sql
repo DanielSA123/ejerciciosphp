@@ -1,7 +1,7 @@
 use agenda;
 go
 
-create or alter procedure addUsusario
+create or alter procedure [dbo].[addUsuario]
 (
 	@nombre nvarchar(50),
 	@apellidos nvarchar(100),
@@ -13,7 +13,8 @@ create or alter procedure addUsusario
 	@telefono nchar(9),
 	@usuario nvarchar(20),
 	@pass nvarchar(255)
-) as 
+	)
+ as 
 begin
 	begin tran;
 		declare @idUsuario int;
@@ -23,7 +24,7 @@ begin
 		begin try 
 			insert into usuario(usuario,pass) values(@usuario,@pass);
 			select @idUsuario = SCOPE_IDENTITY();
-			insert into registro(nombre,apellidos,calle,ciudad,provincia,cp,email,telefono,idUsuario)
+			insert into registro
 				select @nombre,@apellidos,@calle,@ciudad,p.codProvincia,@cp,@email,@telefono,@idUsuario
 				from provincia p
  				where p.nombre = @provincia
@@ -38,3 +39,4 @@ begin
 		end catch
 
 end;
+go

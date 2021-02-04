@@ -1,7 +1,8 @@
 <?php
 // Ejemplo de controlador para página home de la aplicación
 class DefaultController
-{ public function inicio()
+{
+  public function inicio()
   {
     require __DIR__ . '/../Repositorio/busquedaRepositorio.inc';
     $_SESSION['usuario'] = null;
@@ -10,7 +11,8 @@ class DefaultController
     require __DIR__ . '/../../app/plantillas/inicio.php';
   }
 
-  public function sacarDatos(){
+  public function sacarDatos()
+  {
     require __DIR__ . '/../Repositorio/busquedaRepositorio.inc';
     $genero = "";
     $titulo = "";
@@ -25,17 +27,18 @@ class DefaultController
       //echo "$genero, $titulo, $idioma, $autor";
       $datos = (new BusquedaRepositorio())->buscarDatos($genero, $titulo, $idioma, $autor);
       //var_dump($datos);
-    } else{
+    } else {
       return "Rellene las casillas.";
     }
     require __DIR__ . '/../../app/plantillas/inicio.php';
   }
 
-  public function mostrarReserva(){
+  public function mostrarReserva()
+  {
     require __DIR__ . '/../Repositorio/busquedaRepositorio.inc';
     $_SESSION['idLibro'] = $_POST['idLibro'];
     $idLibro = $_SESSION['idLibro'];
-    $librosDisponibles = (new BusquedaRepositorio())->verReservas($idLibro);
+    $librosDisponibles = (new BusquedaRepositorio())->verReservas((int)$idLibro);
 
     //$_SESSION['idEjemplar'] = $librosDisponibles[0]['id'];
     var_dump($_POST);
@@ -47,14 +50,16 @@ class DefaultController
     require __DIR__ . '/../../app/plantillas/datosLibro.php';
   }
 
-  public function hacerReserva(){
+  public function hacerReserva()
+  {
     require __DIR__ . '/../Repositorio/busquedaRepositorio.inc';
     $ids = (new BusquedaRepositorio())->idsDeEjemplar($_SESSION['idLibro']);
     $_SESSION['ids'] = $ids;
     require __DIR__ . '/../../app/plantillas/reserva.php';
   }
 
-  public function reserva(){
+  public function reserva()
+  {
     require __DIR__ . '/../Repositorio/busquedaRepositorio.inc';
     try {
       if (isset($_POST['enviar'])) {
@@ -69,7 +74,7 @@ class DefaultController
           } else {
             $_SESSION['errores']['reserva'] = "Reserva no realizada. Compruebe que ha iniciado sesión y escogido un ejemplar.";
           }
-        }else {
+        } else {
           $_SESSION['errores']['reserva'] = "Reserva no realizada. Compruebe que ha iniciado sesión y escogido un ejemplar.";
         }
       }
