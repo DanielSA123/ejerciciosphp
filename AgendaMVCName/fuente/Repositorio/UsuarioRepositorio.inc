@@ -65,7 +65,17 @@ class UsuarioRepositorio
 
     function addInfUsuario(Registro $obj, Usuario $usu)
     {
-        $sql = 'exec addUsuario(:nom,:ape,:calle,:ciudad,:provincia,:cp,:email,:tel,:usu,:pass)';
+        $sql = 'exec addUsuario @nombre = :nom ,
+        @apellidos = :ape ,
+        @calle =:calle ,
+        @ciudad =:ciudad ,
+        @provincia=:provincia ,
+        @cp=:cp ,
+        @email=:email ,
+        @telefono=:tel ,
+        @usuario=:usu ,
+        @pass=:pass ;
+        ';
 
         try {
             $con = (new ConexionBd())->getConexion();

@@ -19,42 +19,42 @@ class Registro
             if ($this->setNombre($datos['nombre'])) {
                 $this->nombre = $datos['nombre'];
             } else {
-                $error['nombre'] = "Error msg";
+                $error['nombre'] = "Error nombre";
             }
             if ($this->setApellidos($datos['apellidos'])) {
                 $this->apellidos = $datos['apellidos'];
             } else {
-                $error['apellidos'] = "Error msg";
+                $error['apellidos'] = "Error apellido";
             }
             if ($this->setCalle($datos['calle'])) {
                 $this->calle = $datos['calle'];
             } else {
-                $error['calle'] = "Error msg";
+                $error['calle'] = "Error calle";
             }
             if ($this->setCiudad($datos['ciudad'])) {
                 $this->ciudad = $datos['ciudad'];
             } else {
-                $error['ciudad'] = "Error msg";
+                $error['ciudad'] = "Error ciudad";
             }
             if ($this->setProvincia($datos['provincia'])) {
                 $this->provincia = $datos['provincia'];
             } else {
-                $error['provincia'] = "Error msg";
+                $error['provincia'] = "Error provincia";
             }
             if ($this->setCp($datos['cp'])) {
                 $this->cp = $datos['cp'];
             } else {
-                $error['cp'] = "Error msg";
+                $error['cp'] = "Error CP";
             }
             if ($this->setEmail($datos['email'])) {
                 $this->email = $datos['email'];
             } else {
-                $error['email'] = "Error msg";
+                $error['email'] = "Error email";
             }
             if ($this->setTelefono($datos['telefono'])) {
                 $this->telefono = $datos['telefono'];
             } else {
-                $error['telefono'] = "Error msg";
+                $error['telefono'] = "Error telefono";
             }
 
             if (isset($error)) {
@@ -78,8 +78,10 @@ class Registro
      */
     public function setNombre($nombre)
     {
+        if (strpos($nombre, "--")) {
+            return false;
+        }
         $this->nombre = $nombre;
-
         return true;
     }
 
@@ -98,8 +100,10 @@ class Registro
      */
     public function setApellidos($apellidos)
     {
+        if (strpos($apellidos, "--")) {
+            return false;
+        }
         $this->apellidos = $apellidos;
-
         return true;
     }
 
@@ -118,6 +122,9 @@ class Registro
      */
     public function setCalle($calle)
     {
+        if (strpos($calle, "--")) {
+            return false;
+        }
         $this->calle = $calle;
 
         return true;
@@ -188,6 +195,7 @@ class Registro
      */
     public function getEmail(): string
     {
+
         return $this->email;
     }
 
@@ -198,6 +206,9 @@ class Registro
      */
     public function setEmail($email)
     {
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            return false;
+        }
         $this->email = $email;
 
         return true;
@@ -218,6 +229,10 @@ class Registro
      */
     public function setTelefono($telefono)
     {
+        $regexp = '/^[679][0-9]{8,8}$/';
+        if (!preg_match($regexp, $telefono)) {
+            return false;
+        }
         $this->telefono = $telefono;
 
         return true;
