@@ -1,0 +1,21 @@
+#contenido{
+    box-sizing: border-box;
+    display: block;
+}
+#contenido{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+form{
+    padding: 10px;
+    border: 1px solid;
+    width: 500px;
+    min-height: 500px;
+    margin: 10px;
+}
+
+footer{
+    text-align: center;
+}
