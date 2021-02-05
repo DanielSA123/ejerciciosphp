@@ -10,9 +10,9 @@ class UsuarioRepositorio
 {
     public function findPass(string $usu, string $pass)
     {
-        $sql = "SELECT idUsuario,pass 
-        FROM usuario
-         WHERE usuario = :usu";
+        $sql = "SELECT u.idUsuario,pass, r.nombre
+        FROM usuario u INNER JOIN registro r on r.idUsuario = u.idUsuario
+         WHERE u.usuario = :usu";
         // require_once __DIR__ . '/../nucleo/conexionBd.inc';
         try {
             $con = (new ConexionBd())->getConexion();
@@ -30,7 +30,10 @@ class UsuarioRepositorio
         }
         if (!empty($lectura)) {
             if (password_verify($pass, $lectura[0]['pass'])) {
-                $_SESSION['login'] = $lectura[0]['idUsuario'];
+
+                $_SESSION['login'] = true;
+                $_SESSION['usuario'] = $lectura[0]['idUsuario'];
+                $_SESSION['nombreUsuario'] = $lectura[0]['nombre'];
                 return "";
             } else {
                 return $error = "El usuario o contraseña es incorrecto";
@@ -103,6 +106,25 @@ class UsuarioRepositorio
             return false;
         } finally {
             unset($con);
+        }
+    }
+
+    public function findNomIdUsu(string $usuario)
+    {
+        $sql = 'SELECT u.idUsuario ,r.nombre
+                FROM usuario u INNER JOIN registro r
+                ON u.idUsuario = r.idUsuario
+                WHERE u.usuario = :usu';
+        try {
+            $con = (new ConexionBd())->getConexion();
+            $stm = $con->prepare($sql);
+            $stm->bindValue(":usu", $usuario);
+            $stm->execute();
+            return $stm->fetch(\PDO::FETCH_ASSOC);
+        } catch (\PDOException $th) {
+            throw $th;
+        } catch (\Exception $th) {
+            throw $th;
         }
     }
 }

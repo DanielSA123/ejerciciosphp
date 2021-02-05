@@ -10,9 +10,13 @@ class AgendaController
 {
     public function verTodaAgenda()
     {
-        // require_once __DIR__ . '/../Repositorio/AgendaRepositorio.inc';
-        $datos = (new Repositorio\AgendaRepositorio())->findAllAmigos();
-        require __DIR__ . '/../../app/plantillas/mostrarTodos.php';
+        if (isset($_SESSION['ususario'])) {
+            // require_once __DIR__ . '/../Repositorio/AgendaRepositorio.inc';
+            $datos = (new Repositorio\AgendaRepositorio())->findAllAmigos();
+            require __DIR__ . '/../../app/plantillas/mostrarTodos.php';
+        } else {
+            header('location:index.php?ctl=login');
+        }
     }
     public function quitarAmigos()
     {

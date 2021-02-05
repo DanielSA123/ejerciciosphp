@@ -29,6 +29,9 @@ class LoginController
     {
         if (isset($_SESSION['login'])) {
             unset($_SESSION['login']);
+            unset($_SESSION['usuario']);
+            unset($_SESSION['nombreUsuario']);
+
             header('Location: index.php');
         }
     }
@@ -40,6 +43,7 @@ class LoginController
             $pass = $_POST['pass'];
             $passre = $_POST['passre'];
             $datos = $_POST['datos'];
+            $usuarioRepo = new UsuarioRepositorio();
             try {
                 $registro = new Registro($datos);
             } catch (AmigoException $ex) {
@@ -51,8 +55,11 @@ class LoginController
                 if (!$errores = $usuario->getErrores()) {
                     // require_once __DIR__ . '/../Repositorio/UsuarioRepositorio.inc';
                     try {
-                        if ((new UsuarioRepositorio)->addInfUsuario($registro, $usuario)) {
-
+                        if ($usuarioRepo->addInfUsuario($registro, $usuario)) {
+                            $infUsu = $usuarioRepo->findNomIdUsu($usu);
+                            $_SESSION['login'] = true;
+                            $_SESSION['usuario'] = $infUsu['idUsuario'];
+                            $_SESSION['nombreUsuario'] = $infUsu['nombre'];
                             header('Location: index.php');
                         } else {
                             //errores

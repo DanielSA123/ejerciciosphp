@@ -48,6 +48,7 @@
             <a href="index.php?ctl=login">Iniciar Sesion</a> |
             <a href="index.php?ctl=signin">Registrarse</a>
         <?php endif; ?>
+        <?= isset($_SESSION["usuario"]) ? '<div class="saludo">Bienvenido/a ' . $_SESSION['nombreUsuario'] . '</div>' : '' ?>
         <hr>
     </nav>
     <div id="contenido">

@@ -12,11 +12,11 @@ class AgendaRepositorio
         if ($conId) {
             $sql = 'SELECT a.Nombre,Edad,Telefono,p.nombre as Provincia,idAgenda 
             FROM agenda a INNER JOIN provincia p on  a.codProvincia = p.codProvincia
-            WHERE propietario = ' . $_SESSION['login'];
+            WHERE propietario = ' . $_SESSION['usuario'];
         } else {
             $sql = 'SELECT a.Nombre,Edad,Telefono,p.nombre as Provincia 
                 FROM agenda a INNER JOIN provincia p on  a.codProvincia = p.codProvincia
-                WHERE propietario = ' . $_SESSION['login'];
+                WHERE propietario = ' . $_SESSION['usuario'];
         }
         // require_once __DIR__ . '/../nucleo/conexionBd.inc';
         try {
@@ -39,7 +39,7 @@ class AgendaRepositorio
     public function addAmigo(Amigo $amigo): bool
     {
         $sql = 'INSERT INTO agenda(nombre,edad,telefono,codProvincia,propietario)
-         SELECT :nombre,:edad,:telefono,codProvincia,' . $_SESSION['login'] . '
+         SELECT :nombre,:edad,:telefono,codProvincia,' . $_SESSION['usuario'] . '
          FROM provincia
          WHERE nombre = :provincia';
         // require_once __DIR__ . '/../nucleo/conexionBd.inc';
@@ -91,7 +91,7 @@ class AgendaRepositorio
                 FROM agenda a INNER JOIN provincia p on  a.codProvincia = p.codProvincia
                 WHERE (p.nombre LIKE :busca 
                 OR a.Nombre LIKE :buscaN) 
-                AND propietario = " . $_SESSION['login'];
+                AND propietario = " . $_SESSION['usuario'];
 
         // require_once __DIR__ . '/../nucleo/conexionBd.inc';
         try {
