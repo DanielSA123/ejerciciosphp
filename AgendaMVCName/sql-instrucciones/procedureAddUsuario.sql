@@ -16,6 +16,7 @@ create or alter procedure [dbo].[addUsuario]
 	)
  as 
 begin
+SET NOCOUNT ON ;
 	begin tran;
 		declare @idUsuario int;
 		declare @error nvarchar(255);
@@ -29,6 +30,10 @@ begin
 				from provincia p
  				where p.nombre = @provincia
 			commit tran;
+			select u.idUsuario,u.rol,r.nombre
+			from usuario u inner join registro r
+			on u.idUsuario=r.idUsuario
+			where u.idUsuario = @idUsuario;
 		end try
 		begin catch
 			rollback tran;
@@ -37,6 +42,8 @@ begin
 			select @estado = ERROR_STATE();
 			raiserror (@error,@severidad,@estado);
 		end catch
+
+return
 
 end;
 go

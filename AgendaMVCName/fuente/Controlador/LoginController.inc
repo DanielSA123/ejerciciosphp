@@ -29,8 +29,7 @@ class LoginController
     {
         if (isset($_SESSION['login'])) {
             unset($_SESSION['login']);
-            unset($_SESSION['usuario']);
-            unset($_SESSION['nombreUsuario']);
+            unset($_SESSION['infSesion']);
 
             header('Location: index.php');
         }
@@ -55,16 +54,10 @@ class LoginController
                 if (!$errores = $usuario->getErrores()) {
                     // require_once __DIR__ . '/../Repositorio/UsuarioRepositorio.inc';
                     try {
-                        if ($usuarioRepo->addInfUsuario($registro, $usuario)) {
-                            $infUsu = $usuarioRepo->findNomIdUsu($usu);
-                            $_SESSION['login'] = true;
-                            $_SESSION['usuario'] = $infUsu['idUsuario'];
-                            $_SESSION['nombreUsuario'] = $infUsu['nombre'];
-                            header('Location: index.php');
-                        } else {
-                            //errores
-                            var_dump("no se ha introducido");
-                        }
+
+                        $_SESSION["infSesion"] = $usuarioRepo->addInfUsuario($registro, $usuario);
+                        $_SESSION['login'] = true;
+                        header('Location: index.php');
                     } catch (PDOException $ex) {
                         var_dump($ex->getMessage());
                     } catch (Exception $ex) {

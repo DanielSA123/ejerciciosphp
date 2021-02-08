@@ -35,20 +35,23 @@
            ser analizada en la página index.php de cara a encontrar la ruta del
            controlador (y método) que debe procesar la petición
       -->
-        <?php if (isset($_SESSION['login'])) : ?>
-            <a href="index.php?ctl=agregar">Agregar amigo</a> |
-            <a href="index.php?ctl=ver">Ver la agenda</a> |
-            <a href="index.php?ctl=quitar">Eliminar amigo</a>|
-            <a href="index.php?ctl=logout">Cerrar Sesion</a>
-            <form action="index.php?ctl=buscar" method="post">
-                <input type="text" name="nombreBuscar" placeholder="Buscar Amigo/Provincia" value="<?= isset($_POST['nombreBuscar']) ? $_POST['nombreBuscar'] : '' ?>">
-                <input type="submit" value="Buscar" name="busca">
-            </form>
+
+        <?php if (isset($_SESSION['infSesion']) && $_SESSION['infSesion']["rol"] == "usuarios") : ?>
+        <a href="index.php?ctl=agregar">Agregar amigo</a> |
+        <a href="index.php?ctl=ver">Ver la agenda</a> |
+        <a href="index.php?ctl=quitar">Eliminar amigo</a>|
+        <a href="index.php?ctl=logout">Cerrar Sesion</a>
+        <?= isset($_SESSION["infSesion"]) ? '<div class="saludo">Bienvenido/a ' . $_SESSION['infSesion']['nombre'] . '</div>' : '' ?>
+        <form action="index.php?ctl=buscar" method="post">
+            <input type="text" name="nombreBuscar" placeholder="Buscar Amigo/Provincia"
+                value="<?= isset($_POST['nombreBuscar']) ? $_POST['nombreBuscar'] : '' ?>">
+            <input type="submit" value="Buscar" name="busca">
+        </form>
         <?php else : ?>
-            <a href="index.php?ctl=login">Iniciar Sesion</a> |
-            <a href="index.php?ctl=signin">Registrarse</a>
+        <a href="index.php?ctl=login">Iniciar Sesion</a> |
+        <a href="index.php?ctl=signin">Registrarse</a>
         <?php endif; ?>
-        <?= isset($_SESSION["usuario"]) ? '<div class="saludo">Bienvenido/a ' . $_SESSION['nombreUsuario'] . '</div>' : '' ?>
+
         <hr>
     </nav>
     <div id="contenido">

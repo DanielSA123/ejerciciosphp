@@ -97,6 +97,8 @@ class UsuarioRepositorio
             $stm->bindValue(":pass", $usu->getPass());
 
             $stm->execute();
+            // $stm->nextRowset();
+            return $stm->fetch(\PDO::FETCH_ASSOC);
             return true;
         } catch (\PDOException $ex) {
             throw $ex;
