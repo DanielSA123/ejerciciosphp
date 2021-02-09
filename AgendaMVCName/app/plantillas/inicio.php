@@ -14,13 +14,12 @@
 */
 ?>
 <?php ob_start();
-var_dump($_SESSION['infSesion']);
 ?>
 
 <h1>Hola <?= isset($_SESSION["usuario"]) ? $_SESSION['nombreUsuario'] : '' ?></h1>
 <h2><?= $datos['mensaje'] ?></h2>
 <p>Hoy es: <?= $datos['dia'] ?><br>
-    Son las: <?= $datos['hora'] ?></p>
+  Son las: <?= $datos['hora'] ?></p>
 
 
 

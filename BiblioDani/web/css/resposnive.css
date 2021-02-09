@@ -1,14 +1,16 @@
-#contenido{
+#contenido {
     box-sizing: border-box;
     display: block;
 }
-#contenido{
+
+#contenido {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
-form{
+
+#listaLibros form {
     padding: 10px;
     border: 1px solid;
     width: 500px;
@@ -16,6 +18,10 @@ form{
     margin: 10px;
 }
 
-footer{
+#listaEjemplares {
+    display: block;
+}
+
+footer {
     text-align: center;
 }
