@@ -40,4 +40,12 @@ class DefaultController
       header("Location : index.php");
     }
   }
+
+  public function reservarLibro()
+  {
+    if (isset($_SESSION['usuario'])) {
+    } else {
+      header('Location: index.php?ctl=acceder');
+    }
+  }
 }

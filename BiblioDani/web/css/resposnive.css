@@ -3,28 +3,26 @@
     display: block;
 }
 
-#contenido {
-    
-}
-
-#busqueda{ 
+#busqueda {
     display: block;
     width: 30%;
     height: 100%;
-    
     border-right: 1px solid;
     float: left;
 }
+
 #busqueda form * {
     margin: 50px;
     display: block;
 }
-#listaLibros{
+
+#listaLibros {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
+
 #listaLibros form {
     padding: 10px;
     border: 1px solid;
@@ -35,6 +33,12 @@
 
 #listaEjemplares {
     display: block;
+}
+
+.error {
+    font-size: small;
+    color: red;
+    font-style: italic;
 }
 
 footer {

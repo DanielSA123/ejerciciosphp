@@ -20,4 +20,8 @@ $mapeoRutas =
     array('controller' => 'ejemplaresController', 'action' => 'verEjemplares'),
     'buscarLibro' =>
     array('controller' => 'defaultController', 'action' => 'buscarLibro'),
+    'acceder' =>
+    array('controller' => 'usuarioController', 'action' => 'acceder'),
+    'registrarse' =>
+    array('controller' => 'usuarioController', 'action' => 'registrarse'),
   );
