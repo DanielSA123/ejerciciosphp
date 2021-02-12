@@ -45,7 +45,7 @@
             <p><strong>Título:</strong>
                 <?= $value['titulo'] ?>.</p>
             <p><strong>Género:</strong>
-                <?= $value['nombre'] ?>.
+                <a href="index.php?ctl=verGenero&nGenero=<?= $value['nombre'] ?>"> <?= $value['nombre'] ?></a>
             </p>
             <p><strong>Autor:</strong>
                 <?= $value['autor'] ?>.</p>

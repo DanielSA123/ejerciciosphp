@@ -5,9 +5,9 @@
 
 #busqueda {
     display: block;
-    width: 30%;
-    height: 100%;
-    border-right: 1px solid;
+    max-width: 300px;
+    height: max-content;
+    border-right: 2px solid orange;
     float: left;
 }
 
@@ -41,12 +41,30 @@
     font-style: italic;
 }
 .reservado,.devolver{
+    text-align: center;
     font-size: large;
     font-weight: bold;
     color: darkblue;
     background-color: #DDD;
 }
+table,tr,td,th{
+    border: 1px solid;
+    border-collapse: collapse;
+    padding: 10px;
+}
+.centrado{
+    margin: auto;
+    text-align: center;
+}
 
+header{
+    text-align: center;
+    background-color: black;
+}
+h1{
+    color: orange;
+    font-family: monospace ;
+}
 footer {
     text-align: center;
 }

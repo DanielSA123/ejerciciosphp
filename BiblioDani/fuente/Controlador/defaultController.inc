@@ -99,4 +99,21 @@ class DefaultController
       }
     }
   }
+
+  public function verGenero()
+  {
+    if (isset($_GET['nGenero'])) {
+      $nombre = $_GET['nGenero'];
+      try {
+        require_once __DIR__ . '/../Repositorio/BibliotecaRepositorio.inc';
+        $genero = (new BibliotecaRepositorio())->findGenerobyNombre($nombre);
+        include __DIR__ . '../../../app/plantillas/verGenero.php';
+      } catch (PDOException $ex) {
+        var_dump($ex);
+        //errores PDO
+      } catch (Exception $ex) {
+        //errores
+      }
+    }
+  }
 }

@@ -16,6 +16,8 @@ $mapeoRutas =
   array(
     'inicio' =>
     array('controller' => 'defaultController', 'action' => 'inicio'),
+    'verGenero' =>
+    array('controller' => 'defaultController', 'action' => 'verGenero'),
     'verEjemplares' =>
     array('controller' => 'ejemplaresController', 'action' => 'verEjemplares'),
     'verPrestados' =>

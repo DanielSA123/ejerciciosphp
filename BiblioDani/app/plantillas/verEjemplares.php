@@ -9,6 +9,8 @@
 
     </form>
     <?php endfor; ?>
+
+    <p class="centrado"><a href="index.php">Volver</a></p>
 </div>
 
 <?php $contenido = ob_get_clean() ?>
