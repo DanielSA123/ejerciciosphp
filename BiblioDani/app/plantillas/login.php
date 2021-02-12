@@ -1,6 +1,6 @@
 <?php ob_start() ?>
 <div id="formLogin">
-    <form action="index.php?ctl=acceder">
+    <form action="index.php?ctl=acceder" method="POST">
         <fieldset>
             <legend>Iniciar Sesion</legend>
             <?= isset($errores) ? '<p class="error">' . $errores . '</p>' : "" ?>

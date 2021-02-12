@@ -18,10 +18,18 @@ $mapeoRutas =
     array('controller' => 'defaultController', 'action' => 'inicio'),
     'verEjemplares' =>
     array('controller' => 'ejemplaresController', 'action' => 'verEjemplares'),
+    'verPrestados' =>
+    array('controller' => 'defaultController', 'action' => 'misLibros'),
     'buscarLibro' =>
     array('controller' => 'defaultController', 'action' => 'buscarLibro'),
+    'reservar' =>
+    array('controller' => 'defaultController', 'action' => 'reservarEjemplar'),
+    'devolver' =>
+    array('controller' => 'defaultController', 'action' => 'devolverEjemplar'),
     'acceder' =>
     array('controller' => 'usuarioController', 'action' => 'acceder'),
     'registrarse' =>
     array('controller' => 'usuarioController', 'action' => 'registrarse'),
+    'salir' =>
+    array('controller' => 'usuarioController', 'action' => 'salir'),
   );

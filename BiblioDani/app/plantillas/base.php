@@ -27,7 +27,14 @@
            aplicación
        -->
         <a href="index.php?ctl=inicio">Inicio</a> |
+        <?php if (isset($_SESSION['usuario'])) : ?>
+        <a href="index.php?ctl=verPrestados">Ver mis libros prestados</a> |
+        <a href="index.php?ctl=salir">Cerrar sesion</a> |
+        <span>Hola, <?= $_SESSION['usuario'] ?></span>
+
+        <?php else : ?>
         <a href="index.php?ctl=acceder">Acceder</a> |
+        <?php endif; ?>
         <!-- En general, la mayoría de los enlaces serán a la página index.php
            y una asignación a la variable 'ctl'. El valor de la variable deberá
            ser analizada en la página index.php de cara a encontrar la ruta del

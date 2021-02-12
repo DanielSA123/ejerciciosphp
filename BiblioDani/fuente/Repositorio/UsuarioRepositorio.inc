@@ -3,7 +3,7 @@ class UsuarioRepositorio
 {
     public function acceder($usuario, $password)
     {
-        $sql = "SELECT nombre,pass
+        $sql = "SELECT idUsuario,nombre,pass
         FROM usuario 
         where nombre = :nombre";
 
@@ -16,6 +16,7 @@ class UsuarioRepositorio
             $datos = $stm->fetch(PDO::FETCH_ASSOC);
             if ($datos) {
                 if (password_verify($password, $datos['pass'])) {
+                    $_SESSION['idUsuario'] = $datos['idUsuario'];
                     $_SESSION['usuario'] = $datos['nombre'];
                     return true;
                 } else {

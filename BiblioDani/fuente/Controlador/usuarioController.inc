@@ -8,12 +8,11 @@ class usuarioController
             $pass = $_POST['password'];
             try {
                 require_once __DIR__ . '../../Repositorio/UsuarioRepositorio.inc';
-                die(var_dump("asdafsadfas"));
+
                 $acceso = (new UsuarioRepositorio())->acceder($usuario, $pass);
 
                 if ($acceso) {
-                    die(var_dump("aaa"));
-                    // header("Location:index.php");
+                    header("Location:index.php");
                 } else {
                     $errores = "Usuario o contraseña incorrectos";
                     include __DIR__ . '/../../app/plantillas/login.php';
@@ -23,8 +22,9 @@ class usuarioController
             } catch (Exception $th) {
                 die(var_dump($th));
             }
+        } else {
+            include __DIR__ . '/../../app/plantillas/login.php';
         }
-        include __DIR__ . '/../../app/plantillas/login.php';
     }
 
     public function registrarse()
@@ -34,11 +34,12 @@ class usuarioController
             $direccion = $_POST['direccion'];
             $password = $_POST['password'];
             try {
+                require_once __DIR__ . '../../Modelo/usuario.inc';
                 $usuario = new Usuario($nombre, $direccion, $password);
                 try {
                     require_once __DIR__ . '../../Repositorio/UsuarioRepositorio.inc';
                     $hash = password_hash($password, PASSWORD_DEFAULT);
-                    if ((new UsuarioRepositorio())->registrarse($usuario, $direccion, $hash)) {
+                    if ((new UsuarioRepositorio())->registrarse($nombre, $direccion, $hash)) {
                         header("Location:index.php");
                     }
                 } catch (PDOException $th) {
@@ -53,5 +54,13 @@ class usuarioController
         } else {
             include __DIR__ . '/../../app/plantillas/registrarse.php';
         }
+    }
+
+    public function salir()
+    {
+        unset($_SESSION['usuario']);
+        session_unset();
+        session_destroy();
+        header('Location: index.php');
     }
 }

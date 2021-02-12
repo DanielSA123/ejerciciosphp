@@ -40,6 +40,12 @@
     color: red;
     font-style: italic;
 }
+.reservado,.devolver{
+    font-size: large;
+    font-weight: bold;
+    color: darkblue;
+    background-color: #DDD;
+}
 
 footer {
     text-align: center;

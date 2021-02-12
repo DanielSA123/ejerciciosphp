@@ -1,5 +1,14 @@
 <?php ob_start() ?>
 
+<?php if (isset($_SESSION['reservado'])) {
+    echo '<p class="reservado">' . $_SESSION['reservado'] . '</p>';
+    unset($_SESSION['reservado']);
+} ?>
+<?php if (isset($_SESSION['devolver'])) {
+    echo '<p class="devolver">' . $_SESSION['devolver'] . '</p>';
+    unset($_SESSION['devolver']);
+} ?>
+
 <div id="busqueda">
     <form action="index.php?ctl=buscarLibro" method="post">
         <input type="text" name="titulo" value="" placeholder="Titulo">

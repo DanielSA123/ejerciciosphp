@@ -41,11 +41,62 @@ class DefaultController
     }
   }
 
-  public function reservarLibro()
+  public function reservarEjemplar()
   {
     if (isset($_SESSION['usuario'])) {
+      if (isset($_POST['reservar'])) {
+        $ejemplar = $_POST['ejemplar'];
+        try {
+          require_once __DIR__ . '/../Repositorio/BibliotecaRepositorio.inc';
+          if ((new BibliotecaRepositorio())->reservarEjemplar($ejemplar, $_SESSION['idUsuario'])) {
+            $_SESSION['reservado'] = "La reserva se ha realizado correctamente";
+            header('Location:index.php');
+          }
+        } catch (PDOException $ex) {
+          var_dump($ex);
+          //errores PDO
+        } catch (Exception $ex) {
+          //errores
+        }
+      }
     } else {
       header('Location: index.php?ctl=acceder');
+    }
+  }
+
+  public function misLibros()
+  {
+    try {
+      require_once __DIR__ . '/../Repositorio/BibliotecaRepositorio.inc';
+      $misLibros = (new BibliotecaRepositorio())->findLibrosByUsuario($_SESSION['idUsuario']);
+      include __DIR__ . '../../../app/plantillas/verPrestados.php';
+    } catch (PDOException $ex) {
+      var_dump($ex);
+      //errores PDO
+    } catch (Exception $ex) {
+      //errores
+    }
+  }
+
+  public function devolverEjemplar()
+  {
+    if (isset($_POST['devolver'])) {
+      $ejemplar = $_POST['ejemplar'];
+      $usuario = $_POST['usuario'];
+      if ($_SESSION['idUsuario'] == $usuario) {
+        try {
+          require_once __DIR__ . '/../Repositorio/BibliotecaRepositorio.inc';
+          if ((new BibliotecaRepositorio())->devolverEjemplar($ejemplar)) {
+            $_SESSION['devolver'] = "El libro se ha devuelto a la biblioteca";
+            header('Location: index.php');
+          }
+        } catch (PDOException $ex) {
+          var_dump($ex);
+          //errores PDO
+        } catch (Exception $ex) {
+          //errores
+        }
+      }
     }
   }
 }

@@ -1,6 +1,6 @@
 <?php ob_start() ?>
 <div id="formLogin">
-    <form action="">
+    <form action="" method="POST">
         <fieldset>
             <legend>Regístrate</legend>
             <label>Nombre: <input type="text" name="nombre"></label>

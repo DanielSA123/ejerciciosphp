@@ -55,6 +55,29 @@ class BibliotecaRepositorio
         }
     }
 
+    public function findLibrosByUsuario($idUsuario)
+    {
+        $sql = "SELECT idEjemplar,titulo,idUsuario
+                FROM ejemplar e INNER JOIN libro l
+                ON e.idLibro = l.idLibro
+                WHERE idUsuario = :idUsuario";
+        try {
+            require_once __DIR__ . '/../../core/conexionBd.inc';
+            $con = (new ConexionBd())->getConexion();
+            $stm = $con->prepare($sql);
+            $stm->bindValue(":idUsuario", $idUsuario);
+            $stm->execute();
+            return $stm->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $ex) {
+            throw $ex;
+        } catch (Exception $ex) {
+            throw $ex;
+        } finally {
+            unset($stm);
+            unset($con);
+        }
+    }
+
     public function findIdiomas()
     {
         $sql = "SELECT DISTINCT idioma
@@ -135,5 +158,52 @@ class BibliotecaRepositorio
             unset($stm);
             unset($con);
         }
+    }
+
+    public function reservarEjemplar($idEjemplar, $idUsuario)
+    {
+        $sql = "UPDATE ejemplar 
+                SET idUsuario = :idUsuario
+                WHERE idEjemplar = :idEjemplar";
+        try {
+            require_once __DIR__ . '/../../core/conexionBd.inc';
+            $con = (new ConexionBd())->getConexion();
+            $stm = $con->prepare($sql);
+            $stm->bindValue(":idUsuario", $idUsuario);
+            $stm->bindValue(":idEjemplar", $idEjemplar);
+            $stm->execute();
+            return true;
+        } catch (PDOException $ex) {
+            throw $ex;
+        } catch (Exception $ex) {
+            throw $ex;
+        } finally {
+            unset($stm);
+            unset($con);
+        }
+        return false;
+    }
+
+    public function devolverEjemplar($idEjemplar)
+    {
+        $sql = "UPDATE ejemplar
+        SET idUsuario = NULL
+        WHERE idEjemplar = :idEjemplar";
+        try {
+            require_once __DIR__ . '/../../core/conexionBd.inc';
+            $con = (new ConexionBd())->getConexion();
+            $stm = $con->prepare($sql);
+            $stm->bindValue(":idEjemplar", $idEjemplar);
+            $stm->execute();
+            return true;
+        } catch (PDOException $ex) {
+            throw $ex;
+        } catch (Exception $ex) {
+            throw $ex;
+        } finally {
+            unset($stm);
+            unset($con);
+        }
+        return false;
     }
 }

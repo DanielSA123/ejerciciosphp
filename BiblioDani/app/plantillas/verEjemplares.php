@@ -3,11 +3,11 @@
     <h2>Hay <?= count($ejemplares) ?> ejemplares disponibles del libro</h2>
 
     <?php for ($i = 1; $i <= count($ejemplares); $i++) : ?>
-        <form action="index.php?ctl=reservar" method="post">
+    <form action="index.php?ctl=reservar" method="post">
+        <input type="hidden" name="ejemplar" value="<?= $ejemplares[($i - 1)]['idEjemplar'] ?>">
+        Ejemplar <?= $i ?>:<input type="submit" name="reservar" value="Reservar">
 
-            Ejemplar <?= $i ?>:<input type="submit" name="reservar" value="Reservar">
-
-        </form>
+    </form>
     <?php endfor; ?>
 </div>
 
