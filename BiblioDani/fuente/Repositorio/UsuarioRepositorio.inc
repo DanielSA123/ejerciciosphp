@@ -3,7 +3,7 @@ class UsuarioRepositorio
 {
     public function acceder($usuario, $password)
     {
-        $sql = "SELECT idUsuario,nombre,pass
+        $sql = "SELECT idUsuario,nombre,pass,rol
         FROM usuario 
         where nombre = :nombre";
 
@@ -18,6 +18,7 @@ class UsuarioRepositorio
                 if (password_verify($password, $datos['pass'])) {
                     $_SESSION['idUsuario'] = $datos['idUsuario'];
                     $_SESSION['usuario'] = $datos['nombre'];
+                    $_SESSION['rol'] = $datos['rol'];
                     return true;
                 } else {
                     return false;

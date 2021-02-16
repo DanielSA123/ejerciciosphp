@@ -9,7 +9,7 @@
             <input type="submit" name="login" value="Ingresar">
         </fieldset>
     </form>
-    <a href="index.php?ctl=registrarse">Quiero registrarme</a>
+    <p><a href="index.php?ctl=registrarse">Quiero registrarme</a></p>
 </div>
 
 <?php $contenido = ob_get_clean() ?>

@@ -1,4 +1,12 @@
+body {
+    background-color: #373737;
+    color: #c5c5c5;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
 #contenido {
+    margin: 30px auto;
     box-sizing: border-box;
     display: block;
 }
@@ -14,6 +22,10 @@
 #busqueda form * {
     margin: 50px;
     display: block;
+    width: 200px;
+    padding: 0.5rem;
+    font-size: larger;
+    border-radius: 10px;
 }
 
 #listaLibros {
@@ -24,6 +36,8 @@
 }
 
 #listaLibros form {
+    background-color: #272727;
+    border-radius: 10px;
     padding: 10px;
     border: 1px solid;
     width: 500px;
@@ -32,7 +46,18 @@
 }
 
 #listaEjemplares {
+    width: 1000px;
+    margin: auto;
     display: block;
+}
+
+#listaEjemplares * {
+    margin-top: .5rem;
+}
+
+#infoGenero {
+    width: 1000px;
+    margin: auto;
 }
 
 .error {
@@ -40,31 +65,103 @@
     color: red;
     font-style: italic;
 }
-.reservado,.devolver{
+
+.reservado,
+.devolver {
     text-align: center;
     font-size: large;
     font-weight: bold;
     color: darkblue;
     background-color: #DDD;
 }
-table,tr,td,th{
+
+table,
+tr,
+td,
+th {
     border: 1px solid;
     border-collapse: collapse;
     padding: 10px;
 }
-.centrado{
+
+.centrado {
     margin: auto;
     text-align: center;
 }
 
-header{
+header {
+    padding: 40px;
     text-align: center;
     background-color: black;
 }
-h1{
+
+header h1 {
     color: orange;
-    font-family: monospace ;
+    font-family: monospace;
 }
+
+header nav {
+    justify-content: space-between;
+}
+
+a {
+    color: white;
+}
+
+a:visited {
+    color: white;
+}
+
 footer {
     text-align: center;
+    color: white;
+}
+
+#formLogin form {
+    display: flex;
+    margin: .5rem auto;
+    justify-content: space-around;
+    font-size: large;
+}
+
+#formLogin input,
+#formSignup input {
+    padding: 0.5rem;
+}
+
+#formLogin,
+#formSignup {
+    width: 1000px;
+    margin: auto;
+}
+
+#formLogin p,
+#formSignup p {
+    text-align: center;
+}
+
+#formSignup form * {
+    display: block;
+    text-align: center;
+    margin: .5rem auto;
+    font-size: large;
+}
+
+#formSignup form input {
+    text-align: left;
+    width: 300px;
+}
+
+input[type="submit"] {
+    background-color: white;
+    color: #373737;
+    border-radius: 10px;
+    border: 2px solid black;
+    padding: 0.3rem;
+    font-size: larger;
+    text-align: center;
+}
+
+input[type="submit"]:hover {
+    cursor: pointer;
 }

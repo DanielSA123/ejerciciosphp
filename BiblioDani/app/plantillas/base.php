@@ -19,30 +19,31 @@
 <body>
     <header>
         <h1>Biblioteca online</h1>
-    </header>
-    <nav>
-        <hr>
-        <!-- Observa cómo el enlace agrega el valor de la variable GET 'ctl'
+        <nav>
+            <hr>
+            <!-- Observa cómo el enlace agrega el valor de la variable GET 'ctl'
            que será analizado en la página index.php, en este caso le da el
            valor 'inicio' para que la vista cambie a la página home de la
            aplicación
        -->
-        <a href="index.php?ctl=inicio">Inicio</a> |
-        <?php if (isset($_SESSION['usuario'])) : ?>
-        <a href="index.php?ctl=verPrestados">Ver mis libros prestados</a> |
-        <a href="index.php?ctl=salir">Cerrar sesion</a> |
-        <span>Hola, <?= $_SESSION['usuario'] ?></span>
+            <a href="index.php?ctl=inicio">Inicio</a> |
+            <?php if (isset($_SESSION['usuario'])) : ?>
+                <a href="index.php?ctl=verPrestados">Ver mis libros prestados</a> |
+                <a href="index.php?ctl=salir">Cerrar sesion</a> |
+                <span>Hola, <?= $_SESSION['usuario'] ?></span>
 
-        <?php else : ?>
-        <a href="index.php?ctl=acceder">Acceder</a> |
-        <?php endif; ?>
-        <!-- En general, la mayoría de los enlaces serán a la página index.php
+            <?php else : ?>
+                <a href="index.php?ctl=acceder">Acceder</a> |
+            <?php endif; ?>
+            <!-- En general, la mayoría de los enlaces serán a la página index.php
            y una asignación a la variable 'ctl'. El valor de la variable deberá
            ser analizada en la página index.php de cara a encontrar la ruta del
            controlador (y método) que debe procesar la petición
       -->
-        <hr>
-    </nav>
+            <hr>
+        </nav>
+    </header>
+
     <div id="contenido">
         <!-- el id css facilita (si se define) la definición del aspecto visual
            de su contenido

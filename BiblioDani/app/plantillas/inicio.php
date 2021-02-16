@@ -18,7 +18,7 @@
             <?php
             foreach ($generos as $value) :
             ?>
-            <option value="<?= $value['nombre'] ?>"><?= $value['nombre'] ?></option>
+                <option value="<?= $value['nombre'] ?>"><?= $value['nombre'] ?></option>
             <?php
             endforeach;
             ?>
@@ -28,7 +28,7 @@
             <?php
             foreach ($idiomas as $value) :
             ?>
-            <option value="<?= $value['idioma'] ?>"><?= $value['idioma'] ?></option>
+                <option value="<?= $value['idioma'] ?>"><?= $value['idioma'] ?></option>
             <?php
             endforeach;
             ?>
@@ -40,23 +40,23 @@
 
 <div id="listaLibros">
     <?php foreach ($libros as $value) : ?>
-    <form action="index.php?ctl=verEjemplares" method="post">
-        <div>
-            <p><strong>Título:</strong>
-                <?= $value['titulo'] ?>.</p>
-            <p><strong>Género:</strong>
-                <a href="index.php?ctl=verGenero&nGenero=<?= $value['nombre'] ?>"> <?= $value['nombre'] ?></a>
-            </p>
-            <p><strong>Autor:</strong>
-                <?= $value['autor'] ?>.</p>
-            <p><strong>Idioma:</strong>
-                <?= $value['idioma'] ?>.</p>
-            <p><strong>Resumen:</strong>
-                <?= $value['resumen'] ?>.</p>
-            <input type="hidden" name="idLibro" value="<?= $value['idLibro'] ?>">
-            <input type="submit" name="verEjemplares" value="Reservar">
-        </div>
-    </form>
+        <form action="index.php?ctl=verEjemplares" method="post">
+            <div>
+                <p><strong>Título:</strong>
+                    <?= $value['titulo'] ?>.</p>
+                <p><strong>Género:</strong>
+                    <a href="index.php?ctl=verGenero&nGenero=<?= $value['nombre'] ?>"> <?= $value['nombre'] ?></a>
+                </p>
+                <p><strong>Autor:</strong>
+                    <?= $value['autor'] ?>.</p>
+                <p><strong>Idioma:</strong>
+                    <?= $value['idioma'] ?>.</p>
+                <p><strong>Resumen:</strong>
+                    <?= $value['resumen'] ?>.</p>
+                <input type="hidden" name="idLibro" value="<?= $value['idLibro'] ?>">
+                <input type="submit" name="verEjemplares" value="Reservar">
+            </div>
+        </form>
     <?php endforeach; ?>
 </div>
 
