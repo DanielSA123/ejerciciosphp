@@ -107,6 +107,9 @@ class DefaultController
       try {
         require_once __DIR__ . '/../Repositorio/BibliotecaRepositorio.inc';
         $genero = (new BibliotecaRepositorio())->findGenerobyNombre($nombre);
+        if (!$genero) {
+          $vacio = "No se ha encontrado el genero que busca";
+        }
         include __DIR__ . '../../../app/plantillas/verGenero.php';
       } catch (PDOException $ex) {
         var_dump($ex);
