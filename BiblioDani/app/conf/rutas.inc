@@ -20,14 +20,20 @@ $mapeoRutas =
     array('controller' => 'defaultController', 'action' => 'verGenero'),
     'verEjemplares' =>
     array('controller' => 'ejemplaresController', 'action' => 'verEjemplares'),
-    'verPrestados' =>
+    'verMisPrestados' =>
     array('controller' => 'defaultController', 'action' => 'misLibros'),
     'buscarLibro' =>
     array('controller' => 'defaultController', 'action' => 'buscarLibro'),
+    'verReservas' =>
+    array('controller' => 'ejemplaresController', 'action' => 'verReservas'),
     'reservar' =>
-    array('controller' => 'defaultController', 'action' => 'reservarEjemplar'),
+    array('controller' => 'ejemplaresController', 'action' => 'reservarEjemplar'),
+    'aceptar' =>
+    array('controller' => 'ejemplaresController', 'action' => 'aceptarReserva'),
+    'verPrestados' =>
+    array('controller' => 'ejemplaresController', 'action' => 'verPrestados'),
     'devolver' =>
-    array('controller' => 'defaultController', 'action' => 'devolverEjemplar'),
+    array('controller' => 'ejemplaresController', 'action' => 'devolverEjemplar'),
     'acceder' =>
     array('controller' => 'usuarioController', 'action' => 'acceder'),
     'registrarse' =>

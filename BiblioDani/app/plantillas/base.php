@@ -28,7 +28,13 @@
        -->
             <a href="index.php?ctl=inicio">Inicio</a> |
             <?php if (isset($_SESSION['usuario'])) : ?>
-                <a href="index.php?ctl=verPrestados">Ver mis libros prestados</a> |
+
+                <?php if ($_SESSION['rol'] == 'bibliotecario') : ?>
+                    <a href="index.php?ctl=verPrestados">Ver los libros prestados</a> |
+                    <a href="index.php?ctl=verReservas">Ver las reservas pendientes</a>|
+                <?php else : ?>
+                    <a href="index.php?ctl=verMisPrestados">Ver mis libros prestados</a> |
+                <?php endif; ?>
                 <a href="index.php?ctl=salir">Cerrar sesion</a> |
                 <span>Hola, <?= $_SESSION['usuario'] ?></span>
 

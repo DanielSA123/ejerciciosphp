@@ -160,17 +160,44 @@ class BibliotecaRepositorio
         }
     }
 
-    public function reservarEjemplar($idEjemplar, $idUsuario)
+    public function addReserva($idEjemplar, $idUsuario)
     {
-        $sql = "UPDATE ejemplar 
-                SET idUsuario = :idUsuario
-                WHERE idEjemplar = :idEjemplar";
+        $sql = 'INSERT INTO reservas(idEjemplar,idUsuario)
+        values(:idEjemplar,:idUsuario)';
         try {
             require_once __DIR__ . '/../../core/conexionBd.inc';
             $con = (new ConexionBd())->getConexion();
             $stm = $con->prepare($sql);
             $stm->bindValue(":idUsuario", $idUsuario);
             $stm->bindValue(":idEjemplar", $idEjemplar);
+            $stm->execute();
+            return true;
+        } catch (PDOException $ex) {
+            throw $ex;
+        } catch (Exception $ex) {
+            throw $ex;
+        } finally {
+            unset($stm);
+            unset($con);
+        }
+        return false;
+    }
+
+    public function prestarEjemplar($idEjemplar, $idUsuario, $idReserva)
+    {
+        $sql = "UPDATE ejemplar 
+                SET idUsuario = :idUsuario
+                WHERE idEjemplar = :idEjemplar";
+        $sql2 = "DELETE reservas WHERE idReserva = :idReserva";
+        try {
+            require_once __DIR__ . '/../../core/conexionBd.inc';
+            $con = (new ConexionBd())->getConexion();
+            $stm = $con->prepare($sql);
+            $stm->bindValue(":idUsuario", $idUsuario);
+            $stm->bindValue(":idEjemplar", $idEjemplar);
+            $stm->execute();
+            $stm = $con->prepare($sql2);
+            $stm->bindValue(":idReserva", $idReserva);
             $stm->execute();
             return true;
         } catch (PDOException $ex) {
@@ -205,5 +232,51 @@ class BibliotecaRepositorio
             unset($con);
         }
         return false;
+    }
+
+    public function getReservas()
+    {
+        $sql = 'SELECT idReserva,r.idEjemplar,titulo,nombre,r.idUsuario
+            FROM reservas r 
+            INNER JOIN ejemplar e on e.idEjemplar = r.idEjemplar 
+            INNER JOIN libro l on e.idLibro = l.idLibro
+            INNER JOIN usuario u on u.idUsuario = r.idUsuario';
+        try {
+            require_once __DIR__ . '/../../core/conexionBd.inc';
+            $con = (new ConexionBd())->getConexion();
+            $stm = $con->prepare($sql);
+            $stm->execute();
+            return $stm->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $ex) {
+            throw $ex;
+        } catch (Exception $ex) {
+            throw $ex;
+        } finally {
+            unset($stm);
+            unset($con);
+        }
+        return false;
+    }
+
+    public function getPrestados()
+    {
+        $sql = "SELECT idEjemplar,titulo,nombre
+        FROM ejemplar e 
+        INNER JOIN libro l ON e.idLibro = l.idLibro
+        INNER JOIN usuario u on u.idUsuario = e.idUsuario";
+        try {
+            require_once __DIR__ . '/../../core/conexionBd.inc';
+            $con = (new ConexionBd())->getConexion();
+            $stm = $con->prepare($sql);
+            $stm->execute();
+            return $stm->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $ex) {
+            throw $ex;
+        } catch (Exception $ex) {
+            throw $ex;
+        } finally {
+            unset($stm);
+            unset($con);
+        }
     }
 }
